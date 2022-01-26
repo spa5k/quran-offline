@@ -1,6 +1,4 @@
-# PNPM Typescript Rust Monorepo
-
-Pnpm workspaces based monorepo with essential configs and things.
+# Quran app for offline reading.
 
 ## Info -
 
@@ -34,14 +32,6 @@ cargo install cargo-watch
   pnpm tanzeel:dev
   ```
 
-### Rahma - Backend Rust Server using actix-web
-
-- Directly
-
-  ```
-  pnpm rahma:dev
-  ```
-
 ## Want to run other commands for some specific package?
 
 ```sh
@@ -55,7 +45,3 @@ Run lint in Tanzeel
 ```sh
 pnpm tanzeel lint
 ```
-
-## Authors
-
-- [@spa5k](https://www.github.com/spa5k)
