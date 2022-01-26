@@ -3,7 +3,6 @@
 ## Info -
 
 - Tanzeel - Frontend Vite App
-- Libs/Ui - Simple UI components
 
 All packages/apps needs to be started with `quran`/package-name in order to keep them inside the scope.
 
