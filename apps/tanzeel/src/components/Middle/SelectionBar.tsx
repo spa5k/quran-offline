@@ -1,15 +1,19 @@
-import { Box, Button, HStack } from '@chakra-ui/react';
+import { Box, Button, ButtonGroup, HStack } from '@chakra-ui/react';
 
 export const SelectionBar = () => (
   <HStack justify="space-between" width="full">
     <Box>
-      <Button>1</Button>
-      <Button>2</Button>
+      <ButtonGroup>
+        <Button>1</Button>
+        <Button>2</Button>
+      </ButtonGroup>
     </Box>
     <HStack>
-      <Button>Sort Serial</Button>
-      <Button>Sort Alphabet</Button>
-      <Button>Sort Parah</Button>
+      <ButtonGroup>
+        <Button>Sort Serial</Button>
+        <Button>Sort Alphabet</Button>
+        <Button>Sort Parah</Button>
+      </ButtonGroup>
     </HStack>
   </HStack>
 );

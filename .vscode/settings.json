@@ -33,6 +33,7 @@
 		"@rahma/logs",
 		"@tanzeel",
 		"docs",
+		"layout",
 		"layout"
 	]
 }
