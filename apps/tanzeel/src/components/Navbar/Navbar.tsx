@@ -17,9 +17,9 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import Logo from '~icons/brand/logo';
-import IconSun from '~icons/clarity/sun-line';
 import IconMenu from '~icons/eva/menu-outline';
 import IconHeadphone from '~icons/fluent/headphones-48-regular';
+import IconSun from '~icons/heroicons-solid/sun';
 import IconSearch from '~icons/mdi/search';
 import IconNight from '~icons/mdi/weather-night';
 

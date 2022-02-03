@@ -1,4 +1,5 @@
-import { Button, VStack } from '@chakra-ui/react';
+import { VStack } from '@chakra-ui/react';
+import { Sidebar } from '../Sidebar';
 
 export const LeftSection = () => (
   <VStack
@@ -7,8 +8,6 @@ export const LeftSection = () => (
     height="100%"
     justifyContent="space-around"
   >
-    <Button>1</Button>
-    <Button>2</Button>
-    <Button>3</Button>
+    <Sidebar />
   </VStack>
 );
