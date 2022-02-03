@@ -1,0 +1,67 @@
+import {
+  Box,
+  BoxProps,
+  Drawer,
+  DrawerContent,
+  useDisclosure,
+} from '@chakra-ui/react';
+import { IconType } from 'react-icons';
+import IconHeart from '~icons/akar-icons/heart';
+import IconBookOpen from '~icons/bx/bx-book-open';
+import IconSettings from '~icons/carbon/settings';
+import IconShare from '~icons/ci/share-outline';
+import IconHeadphone from '~icons/fluent/headphones-48-regular';
+import { NavItem } from './NavItem';
+
+interface LinkItemProps {
+  name: string;
+  icon: IconType;
+}
+
+const LinkItems: Array<LinkItemProps> = [
+  { name: 'Quran', icon: IconBookOpen },
+  { name: 'Bookmarks', icon: IconHeart },
+  { name: 'Listen', icon: IconHeadphone },
+  { name: 'Share', icon: IconShare },
+  { name: 'Settings', icon: IconSettings },
+];
+
+export const Sidebar = () => {
+  const { isOpen, onClose } = useDisclosure();
+
+  return (
+    <Box minH="100vh">
+      <SidebarContent
+        onClose={() => onClose}
+        display={{ base: 'none', md: 'block' }}
+      />
+      <Drawer
+        autoFocus={false}
+        isOpen={isOpen}
+        placement="left"
+        onClose={onClose}
+        returnFocusOnClose={false}
+        onOverlayClick={onClose}
+        size="full"
+      >
+        <DrawerContent>
+          <SidebarContent onClose={onClose} />
+        </DrawerContent>
+      </Drawer>
+    </Box>
+  );
+};
+
+interface SidebarProps extends BoxProps {
+  onClose: () => void;
+}
+
+const SidebarContent = ({ onClose, ...rest }: SidebarProps) => (
+  <Box h="full" {...rest}>
+    {LinkItems.map((link) => (
+      <NavItem key={link.name} icon={link.icon}>
+        {link.name}
+      </NavItem>
+    ))}
+  </Box>
+);
