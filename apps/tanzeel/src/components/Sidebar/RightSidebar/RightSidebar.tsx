@@ -4,7 +4,7 @@ import IconUser from '~icons/el/user';
 import IconHeadphone from '~icons/fluent/headphones-48-regular';
 
 export const RightSidebar = () => (
-	<VStack spacing={20} ml={40} alignItems='center' width={300}>
+	<VStack spacing={20} alignItems='center' width={300} mr={20}>
 		<SalamComponent user={{ name: 'User' }} />
 		<LastRead />
 		<LastListened />

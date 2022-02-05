@@ -3,7 +3,7 @@ import { MainLayout } from './components/Layout';
 
 function App() {
 	return (
-		<Container maxW='container.xl' p={0}>
+		<Container w='full' h='full' maxW='full' p={0}>
 			<MainLayout />
 		</Container>
 	);

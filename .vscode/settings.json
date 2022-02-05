@@ -36,6 +36,7 @@
 		"layout",
 		"layout",
 		"navbar",
-		"right/sidebar"
+		"right/sidebar",
+		"feature/middle-section"
 	]
 }

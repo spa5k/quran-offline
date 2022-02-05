@@ -9,6 +9,7 @@ import {
 	Input,
 	InputGroup,
 	InputLeftElement,
+	Link,
 	useColorMode,
 	useColorModeValue,
 	useDisclosure,
@@ -89,10 +90,10 @@ export const NavBar = () => {
 						</chakra.a>
 
 						<HStack spacing={3} display={{ base: 'none', md: 'inline-flex' }}>
-							<Button variant='ghost' size='sm'>
+							<Button variant='ghost' size='lg' as={Link}>
 								Quran
 							</Button>
-							<Button variant='ghost' size='sm'>
+							<Button variant='ghost' size='lg' as={Link}>
 								Bookmarks
 							</Button>
 						</HStack>
