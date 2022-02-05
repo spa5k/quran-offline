@@ -35,6 +35,7 @@
 		"docs",
 		"layout",
 		"layout",
-		"navbar"
+		"navbar",
+		"right/sidebar"
 	]
 }
