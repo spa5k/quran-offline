@@ -27,7 +27,6 @@ export const LeftSidebar = () => {
 		<Box>
 			<SidebarContent
 				onClose={() => onClose}
-				// display={{ base: 'none', md: 'block' }}
 			/>
 			<Drawer
 				autoFocus={false}
@@ -36,7 +35,6 @@ export const LeftSidebar = () => {
 				onClose={onClose}
 				returnFocusOnClose={false}
 				onOverlayClick={onClose}
-				// size="full"
 			>
 				<DrawerContent>
 					<SidebarContent onClose={onClose} />

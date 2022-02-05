@@ -1,8 +1,8 @@
-import { Box } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { RightSidebar } from '../Sidebar';
 
 export const RightSection = () => (
-	<Box>
+	<Flex height='100%' alignItems='center'>
 		<RightSidebar />
-	</Box>
+	</Flex>
 );
