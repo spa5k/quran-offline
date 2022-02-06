@@ -37,6 +37,7 @@
 		"layout",
 		"navbar",
 		"right/sidebar",
-		"feature/middle-section"
+		"feature/middle-section",
+		"data"
 	]
 }
