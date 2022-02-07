@@ -7,7 +7,7 @@
 		"distDir": "../dist",
 		"devPath": "http://localhost:3000",
 		"beforeDevCommand": "pnpm dev",
-		"beforeBuildCommand": "pnpm build"
+		"beforeBuildCommand": "pnpm download && pnpm build"
 	},
 	"tauri": {
 		"bundle": {
@@ -21,7 +21,9 @@
 				"icons/icon.icns",
 				"icons/icon.ico"
 			],
-			"resources": [],
+			"resources": [
+				"./scripts/quran/*/**"
+			],
 			"externalBin": [],
 			"copyright": "",
 			"category": "DeveloperTool",
