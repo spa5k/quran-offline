@@ -20,7 +20,7 @@ export const ChaptersGrid = () => {
 	}
 
 	return (
-		<Wrap spacing='30px'>
+		<Wrap spacing='60px' justifyContent='space-around'>
 			{data.map((chapter, index) => (
 				<ChapterBox
 					id={chapter.id}

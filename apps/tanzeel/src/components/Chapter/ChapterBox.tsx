@@ -1,15 +1,17 @@
-import { Badge, Flex, Heading, useColorModeValue, VStack, WrapItem } from '@chakra-ui/react';
+import { Badge, chakra, Flex, Heading, useColorModeValue, VStack, WrapItem } from '@chakra-ui/react';
+import { Link } from 'react-location';
 import IconHeart from '~icons/akar-icons/heart';
 import { Chapter } from '../../utils/type';
 
 export const ChapterBox = ({ id, name, total_verses, translation, transliteration, type }: Chapter) => (
 	<WrapItem>
 		<VStack
-			w='250px'
+			w='350px'
+			height='150px'
 			px={4}
 			py={3}
 			bg={useColorModeValue('white', 'gray.800')}
-			shadow='md'
+			shadow='lg'
 			rounded='md'
 			alignItems='flex-start'
 		>
@@ -18,9 +20,11 @@ export const ChapterBox = ({ id, name, total_verses, translation, transliteratio
 				<IconHeart color='#2da861' />
 			</Flex>
 			<VStack justifyContent='space-between' alignItems='flex-start'>
-				<Heading as='h3' size='md' fontWeight={600}>
-					{transliteration}
-				</Heading>
+				<Link to={`/surah/${id}`}>
+					<Heading as='h3' size='md' fontWeight={600}>
+						{transliteration} <chakra.span ml={4} color='#2da861'>{name}</chakra.span>
+					</Heading>
+				</Link>
 				<Heading as='h3' size='md' fontWeight={600} color='gray.500'>
 					{translation}
 				</Heading>
