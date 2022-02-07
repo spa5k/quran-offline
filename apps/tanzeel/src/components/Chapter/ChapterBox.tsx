@@ -1,11 +1,8 @@
 import { Badge, Flex, Heading, useColorModeValue, VStack, WrapItem } from '@chakra-ui/react';
 import IconHeart from '~icons/akar-icons/heart';
+import { Chapter } from '../../utils/type';
 
-type ChapterBoxProps = {
-	number: number;
-};
-
-export const ChapterBox = ({ number }: ChapterBoxProps) => (
+export const ChapterBox = ({ id, name, total_verses, translation, transliteration, type }: Chapter) => (
 	<WrapItem>
 		<VStack
 			w='250px'
@@ -17,15 +14,15 @@ export const ChapterBox = ({ number }: ChapterBoxProps) => (
 			alignItems='flex-start'
 		>
 			<Flex w='full' justifyContent='space-between' fontSize='xl' fontWeight='bold' mb={2}>
-				<Badge colorScheme='green' ml='1' fontSize='0.8em'>#{number}</Badge>
+				<Badge colorScheme='green' ml='1' fontSize='0.8em'>#{id}</Badge>
 				<IconHeart color='#2da861' />
 			</Flex>
 			<VStack justifyContent='space-between' alignItems='flex-start'>
 				<Heading as='h3' size='md' fontWeight={600}>
-					{'Al-Fatiha'.toUpperCase()}
+					{transliteration}
 				</Heading>
 				<Heading as='h3' size='md' fontWeight={600} color='gray.500'>
-					The Opening
+					{translation}
 				</Heading>
 			</VStack>
 		</VStack>
