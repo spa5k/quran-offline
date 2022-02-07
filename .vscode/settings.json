@@ -39,6 +39,7 @@
 		"right/sidebar",
 		"feature/middle-section",
 		"data",
-		"quran"
+		"quran",
+		"routing"
 	]
 }

@@ -9,7 +9,6 @@ import {
 	Input,
 	InputGroup,
 	InputLeftElement,
-	Link,
 	useColorMode,
 	useColorModeValue,
 	useDisclosure,
@@ -17,6 +16,7 @@ import {
 	VStack,
 } from '@chakra-ui/react';
 import React from 'react';
+import { Link } from 'react-location';
 import Logo from '~icons/brand/logo';
 import IconMenu from '~icons/eva/menu-outline';
 import IconHeadphone from '~icons/fluent/headphones-48-regular';
@@ -90,11 +90,16 @@ export const NavBar = () => {
 						</chakra.a>
 
 						<HStack spacing={3} display={{ base: 'none', md: 'inline-flex' }}>
-							<Button variant='ghost' size='lg' as={Link}>
-								Quran
+							<Button variant='ghost' size='lg'>
+								<Link to='/'>
+									Quran
+								</Link>
 							</Button>
-							<Button variant='ghost' size='lg' as={Link}>
-								Bookmarks
+
+							<Button variant='ghost' size='lg'>
+								<Link to='/surah/1'>
+									Bookmarks
+								</Link>
 							</Button>
 						</HStack>
 					</HStack>
