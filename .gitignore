@@ -163,3 +163,5 @@ dist/**
 .idea
 # ignore all quran folders
 quran
+
+download
