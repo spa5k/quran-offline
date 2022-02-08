@@ -39,7 +39,7 @@ type QuranPart = {
 	verse: number;
 	text: string;
 };
-// type quran have index string and the value is an array of QuranPart
+
 type Quran = {
 	[index: string]: QuranPart[];
 };
