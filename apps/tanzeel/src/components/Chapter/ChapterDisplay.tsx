@@ -1,6 +1,6 @@
+import { Text } from '@chakra-ui/react';
 import { MakeGenerics, useMatch } from 'react-location';
 import { Chapter } from '../../utils/type';
-
 type LocationGenerics = MakeGenerics<{
 	LoaderData: {
 		surah: Chapter;
@@ -22,7 +22,15 @@ export const ChapterDisplay = () => {
 			<p>{surah.id}</p>
 
 			<p>{surah.name}</p>
-			{surah.verses.map((verse) => <p key={verse.id}>{verse.text}</p>)}
+			{surah.verses.map((verse) => (
+				<Text
+					key={verse.id}
+					fontSize='xxx-large'
+					fontFamily='Uthman'
+				>
+					{verse.text}
+				</Text>
+			))}
 		</div>
 	);
 };
