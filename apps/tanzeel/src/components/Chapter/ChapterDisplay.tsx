@@ -1,6 +1,5 @@
 import { Text } from '@chakra-ui/react';
 import { MakeGenerics, useMatch } from 'react-location';
-import { Chapter } from '../../utils/type';
 type LocationGenerics = MakeGenerics<{
 	LoaderData: {
 		surah: Chapter;
