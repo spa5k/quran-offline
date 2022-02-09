@@ -1,191 +1,101 @@
-// This function will download the chapterList from https://api.quran.com/api/v4/chapters
+import type { queueAsPromised } from 'fastq';
+import fastq from 'fastq';
 import fs from 'fs-extra';
-import _ from 'lodash';
+import { $fetch } from 'ohmyfetch';
 
-type GenerateQuranProps = {
-	lang: Lang;
+type LangProps = {
+	lang: string;
 };
 
-type Lang = string | null;
+const downloadSurahList = async ({ lang }: LangProps): Promise<void> => {
+	const surahs = await $fetch(`https://api.quran.com/api/v4/chapters?language=${lang}`, { method: 'GET' });
 
-type GenerateByChapterProps = {
-	chapters: Chapter[];
-	lang: Lang;
-};
+	// first check if chapters list has already been downloaded -
+	// if it has, then skip it
+	const downloadedSurahs = await fs.pathExists(`src-tauri/scripts/download/chapters/list/${lang}.json`);
 
-type GenerateByVersesProps = {
-	quran: {
-		lang: Lang;
-		chapters: Chapter[];
-	};
-	translation: Translation[];
-};
-
-type Chapter = {
-	id: string;
-	name: string;
-	transliteration: string;
-	translation: string;
-	type: string;
-	total_verses: number;
-	verses: Verse[];
-	chapter: number;
-	verse: number;
-	text: string;
-};
-
-type QuranPart = {
-	chapter: number;
-	verse: number;
-	text: string;
-};
-
-type Quran = {
-	[index: string]: QuranPart[];
-};
-
-type Verse = {
-	id: number;
-	text: string;
-	translation: string;
-	transliteration: string;
-};
-
-type Translation = {
-	[index: string]: Chapter[];
-};
-
-const generateQuran = async ({ lang }: GenerateQuranProps) => {
-	const filename = lang ? `quran_${lang}.json` : 'quran.json';
-	console.log(`+ Generating ${filename}...`);
-
-	// get the data already downloaded in data directory, by chapters, quran and translation.
-	const chapters: Chapter[] = await fs.readJSON(`src-tauri/scripts/data/chapters/${lang === null || lang === 'transliteration' ? 'en' : lang}.json`);
-	const quran: Quran = await fs.readJSON('src-tauri/scripts/data/quran.json');
-	const translation: Translation = lang ? await fs.readJSON(`src-tauri/scripts/data/editions/${lang}.json`) : null;
-
-	const data = chapters.map(item => {
-		const chapter: Chapter = {
-			id: item.id,
-			name: item.name,
-			transliteration: item.transliteration,
-			translation: item.translation,
-			type: item.type,
-			total_verses: item.total_verses,
-			chapter: item.chapter,
-			text: item.text,
-			verse: item.verse,
-			verses: quran[item.id].map((i, idx) => {
-				const verse: Verse = {
-					id: i.verse,
-					text: i.text,
-					translation: '',
-					transliteration: '',
-				};
-
-				if (translation) {
-					if (lang === 'transliteration') {
-						verse.transliteration = translation[item.id][idx].text;
-					} else if (lang === 'translation') {
-						verse.translation = translation[item.id][idx].text;
-					}
-				}
-				return verse;
-			}),
-		};
-
-		if (lang === null) {
-			chapter.translation = '';
-		}
-
-		return chapter;
-	});
-
-	await fs.outputJson(`src-tauri/scripts/quran/${filename}`, data, { spaces: 2 });
-
-	return data;
-};
-
-// generate by chapter
-const generateByChapter = async ({ lang, chapters }: GenerateByChapterProps) => {
-	await Promise.all(chapters.map(chapter => {
-		const filename = lang ? `${lang}/${chapter.id}.json` : `${chapter.id}.json`;
-
-		console.log(`+ Generating chapter: ${filename}...`);
-
-		return fs.outputJson(`src-tauri/scripts/quran/chapters/${filename}`, chapter, { spaces: 2 });
-	}));
-
-	const indexFilename = lang ? `${lang}/index.json` : 'index.json';
-
-	const index = chapters.map(({ verses, ...chapter }) => ({
-		...chapter,
-	}));
-
-	await fs.outputJson(`src-tauri/scripts/quran/chapters/${indexFilename}`, index, { spaces: 2 });
-};
-
-// generate by verse
-const generateByVerses = async ({ quran, translation }: GenerateByVersesProps) => {
-	let id = 1;
-	const verses = _.flatten(quran.chapters.map((chapter, chapterIdx) =>
-		chapter.verses.map((verse, verseIdx) => ({
-			id: id++,
-			number: verse.id,
-			text: verse.text,
-			translations: _.zipObject(
-				translation.map(transQuran => transQuran.chapters[chapterIdx].verses[verseIdx].translation),
-			),
-			transliteration: verse.transliteration,
-			chapter: {
-				id: chapter.id,
-				name: chapter.name,
-				transliteration: chapter.transliteration,
-				translations: _.zipObject(
-					translation.map(transQuran => transQuran.chapters[chapterIdx].translation),
-				),
-				type: chapter.type,
-			},
-		}))
-	));
-
-	const chunkVerses = _.chunk(verses, 100);
-	for (const chunkVerse of chunkVerses) {
-		await Promise.all(chunkVerse.map(verse => {
-			const filename = `${verse.id}.json`;
-
-			console.log(`+ Generating verse: ${filename}...`);
-
-			return fs.outputJson(`src-tauri/scripts/quran/verses/${filename}`, verse, { spaces: 2 });
-		}));
+	if (!downloadedSurahs) {
+		await fs.outputJSON(`src-tauri/scripts/download/chapters/list/${lang}.json`, surahs.chapters, { spaces: 2 });
+		console.log('Downloaded surahs list for lang - ', lang);
+	} else {
+		console.log('Already have surahs list for lang - ', lang);
 	}
 };
 
-const main = async () => {
-	await fs.emptyDir('quran');
+const downloadSurahInfo = async ({ lang }: LangProps): Promise<void> => {
+	type Task = {
+		chapterNumber: number;
+		lang: string;
+	};
 
-	const langCodes = [null, 'bn', 'en', 'es', 'fr', 'id', 'ru', 'sv', 'tr', 'ur', 'zh'];
+	console.log('Downloading for Lang ', lang);
 
-	const [transliterationChapters, ...chaptersList] = await Promise.all(
-		['transliteration', ...langCodes].map(lang => generateQuran({ lang })),
-	);
+	const q: queueAsPromised<Task> = fastq.promise(asyncWorker, 2);
+	for (let index: number = 1; index <= 114; index++) {
+		await q.push({ chapterNumber: index, lang });
+	}
 
-	const qurans = chaptersList.map((chapters, idx) => ({
-		lang: langCodes[idx],
-		chapters: chapters.map((chapter, chapterIdx) => ({
-			...chapter,
-			verses: chapter.verses.map((verse, verseIdx) => ({
-				...verse,
-				transliteration: transliterationChapters[chapterIdx].verses[verseIdx].transliteration,
-			})),
-		})),
-	}));
+	async function asyncWorker(arg: Task): Promise<void> {
+		const chapterNumber: number = arg.chapterNumber;
 
-	await Promise.all(qurans.map(quran => generateByChapter({ chapters: quran.chapters, lang: quran.lang })));
-	// @ts-ignore
-	await generateByVerses({ quran: qurans[0], translation: qurans.slice(2) });
+		// first check if the chapter has already been downloaded -
+		// if it has, then skip it
+		const downloadedSurah: boolean = await fs.pathExists(`src-tauri/scripts/download/surahs/info/${chapterNumber}/${lang}.json`);
 
-	console.log('✓ Done');
+		if (!downloadedSurah) {
+			const chapterInfo = await $fetch(
+				`https://api.quran.com/api/v4/chapters/${chapterNumber}/info?language=${arg.lang}`,
+				{ method: 'GET' },
+			);
+			await fs.outputJSON(`src-tauri/scripts/download/surahs/info/${chapterNumber}/${lang}.json`, chapterInfo.chapter_info, { spaces: 2 });
+
+			console.log(`Downloaded Info for surah ${chapterNumber} lang - ${lang}`);
+		} else {
+			console.log(`Already have Info for surah - ${chapterNumber} lang - ${lang}`);
+		}
+	}
 };
 
-main().catch(console.error);
+const downloadAllAyahsBySurah = async ({ lang }: { lang: string; }): Promise<void> => {
+	type Task = {
+		chapterNumber: number;
+		lang: string;
+	};
+
+	const q: queueAsPromised<Task> = fastq.promise(asyncWorker, 2);
+	for (let index: number = 1; index <= 114; index++) {
+		await q.push({ chapterNumber: index, lang });
+	}
+
+	async function asyncWorker(arg: Task): Promise<void> {
+		const chapterNumber: number = arg.chapterNumber;
+
+		// first check if the chapter has already been downloaded -
+		// if it has, then skip it
+		const downloadedChapter = await fs.pathExists(`src-tauri/scripts/download/surahs/ayahs/${chapterNumber}/${lang}.json`);
+
+		if (!downloadedChapter) {
+			const chapterInfo = await $fetch(
+				`https://api.quran.com/api/v4/verses/by_chapter/${chapterNumber}?language=${arg.lang}&words=true&translations=true&tafsirs=true&word_fields=text_uthmani%2Ctext_uthmani_simple%2Ctext_imlaei_simple%2Ctext_indopak&fields=text_uthmani%2Ctext_uthmani_simple%2Ctext_imlaei_simple%2Ctext_indopak&page=1&per_page=1000`,
+				{ method: 'GET' },
+			);
+			await fs.outputJSON(`src-tauri/scripts/download/surahs/ayahs/${chapterNumber}/${lang}.json`, chapterInfo.verses, { spaces: 2 });
+
+			console.log(`Downloaded ayahs for surah ${chapterNumber} lang - ${lang}`);
+		} else {
+			console.log(`Already have ayahs for surah - ${chapterNumber} lang - ${lang}`);
+		}
+	}
+};
+
+const main = async (): Promise<void> => {
+	// Download All Verses Chapter by Chapter
+	const langCodes = ['bn', 'en', 'es', 'fr', 'id', 'ru', 'sv', 'tr', 'ur', 'zh'];
+	for (const lang of langCodes) {
+		await downloadSurahInfo({ lang });
+		await downloadAllAyahsBySurah({ lang });
+		await downloadSurahList({ lang });
+	}
+};
+
+main().catch((err) => console.error(err));

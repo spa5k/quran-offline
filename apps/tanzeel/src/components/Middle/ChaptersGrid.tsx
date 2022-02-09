@@ -1,18 +1,19 @@
 import { Wrap } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { getChapterList } from '../../utils/getChapterList';
-import { Chapter } from '../../utils/type';
+import { getSurahList } from '../../utils/getChapterList';
+import { SurahList } from '../../utils/type';
 import { ChapterBox } from '../Chapter';
 
-export const ChaptersGrid = () => {
-	const [data, setData] = useState<Chapter[]>([]);
+export const ChaptersGrid = (): JSX.Element => {
+	const [data, setData] = useState<SurahList[]>([]);
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
-		getChapterList()
-			.then(response => {
-				setData(response);
-				setLoading(false);
-			});
+		const fetchData = async (): Promise<void> => {
+			const result: SurahList[] = await getSurahList();
+			setData(result);
+			setLoading(false);
+		};
+		fetchData().catch(console.error);
 	}, []);
 
 	if (loading && !data) {
@@ -21,14 +22,12 @@ export const ChaptersGrid = () => {
 
 	return (
 		<Wrap spacing='60px' justifyContent='space-around'>
-			{data.map((chapter, index) => (
+			{data.map((chapter) => (
 				<ChapterBox
 					id={chapter.id}
-					name={chapter.name}
-					total_verses={chapter.total_verses}
-					translation={chapter.translation}
-					transliteration={chapter.transliteration}
-					type={chapter.type}
+					name_arabic={chapter.name_arabic}
+					name_simple={chapter.name_simple}
+					translated_name={chapter.translated_name}
 				/>
 			))}
 		</Wrap>

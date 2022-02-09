@@ -6,8 +6,7 @@
 		"build": "vite build",
 		"preview": "vite preview",
 		"tauri": "tauri",
-		"download": "tsc --project src-tauri/scripts/tsconfig.dev.json --watch",
-		"download:quran": "node src-tauri/scripts/build/downloader2.js"
+		"download": "ts-node --project src-tauri/scripts/tsconfig.dev.json src-tauri/scripts/downloader.ts"
 	},
 	"dependencies": {
 		"@chakra-ui/react": "^1.8.3",
@@ -20,6 +19,7 @@
 		"dayjs": "^1.10.7",
 		"fastq": "^1.13.0",
 		"framer-motion": "^5",
+		"jotai": "^1.5.3",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-icons": "^4.3.1",
@@ -30,11 +30,14 @@
 	"devDependencies": {
 		"@babel/core": "^7.17.0",
 		"@iconify/json": "^2.0.34",
+		"@rushstack/eslint-patch": "^1.1.0",
+		"@spa5k/eslint-config": "^0.0.2",
 		"@svgr/core": "^6.2.1",
 		"@tauri-apps/cli": "^1.0.0-beta.10",
 		"@types/react": "^17.0.39",
 		"@types/react-dom": "^17.0.11",
 		"@vitejs/plugin-react": "^1.1.4",
+		"eslint": "^8.8.0",
 		"fs-extra": "^10.0.0",
 		"got": "^12.0.1",
 		"node-dev": "^7.1.0",

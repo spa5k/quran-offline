@@ -22,7 +22,7 @@
 				"icons/icon.ico"
 			],
 			"resources": [
-				"./scripts/quran/*/**"
+				"./scripts/download/*/**"
 			],
 			"externalBin": [],
 			"copyright": "",

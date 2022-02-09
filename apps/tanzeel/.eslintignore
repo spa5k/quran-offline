@@ -159,11 +159,4 @@ build/**
 dist/**
 
 .next/**
-
-.idea
-# ignore all quran folders
-quran
-
-download
-build/
-data/
+dist/

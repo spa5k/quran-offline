@@ -1,9 +1,10 @@
 import { readTextFile } from '@tauri-apps/api/fs';
-import { Chapter } from './type';
+import { SurahList } from './type';
 
-export const getChapterList = async () => {
-	const response = await readTextFile('scripts/data/chapters/en.json');
-	const parsedData: Chapter[] = JSON.parse(response);
+export const getSurahList = async (): Promise<SurahList[]> => {
+	const response: string = await readTextFile('scripts/download/chapters/en.json');
+
+	const parsedData: SurahList[] = JSON.parse(response);
 
 	return parsedData;
 };
