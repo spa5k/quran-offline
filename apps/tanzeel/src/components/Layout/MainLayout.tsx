@@ -1,12 +1,12 @@
 import { Flex, HStack, VStack } from '@chakra-ui/react';
-import { Outlet, ReactLocation, Router } from 'react-location';
+import { DefaultGenerics, Outlet, ReactLocation, Router } from 'react-location';
 import { getSurahByNumber } from '../../utils/getSurahByNumber';
 import { ChapterDisplay } from '../Chapter/ChapterDisplay';
 import { NavBar } from '../Navbar';
 import { LeftSection, MiddleSection, RightSection } from '.';
 
-export const MainLayout = () => {
-	const location = new ReactLocation();
+export const MainLayout = (): JSX.Element => {
+	const location: ReactLocation<DefaultGenerics> = new ReactLocation();
 
 	return (
 		<Flex h='100vh' align='center' justify='center' w='full'>

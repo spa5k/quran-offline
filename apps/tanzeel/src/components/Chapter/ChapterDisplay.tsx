@@ -1,8 +1,13 @@
 import { Text } from '@chakra-ui/react';
 import { MakeGenerics, useMatch } from 'react-location';
+import { Surah, SurahDetail, SurahInfo } from '../../utils/type';
 type LocationGenerics = MakeGenerics<{
 	LoaderData: {
-		surah: Chapter;
+		surah: {
+			ayahs: Surah;
+			surahInfo: SurahInfo;
+			SurahDetail: SurahDetail;
+		};
 	};
 }>;
 
@@ -11,23 +16,23 @@ export const ChapterDisplay = () => {
 		data: { surah },
 	} = useMatch<LocationGenerics>();
 
-	if (!surah) return <p>loading</p>;
-
 	console.log('data', surah);
+	if (!surah?.SurahDetail) return <p>loading</p>;
 
 	return (
 		<div>
 			<p>ChapterDisplay</p>
-			<p>{surah.id}</p>
+			<p>{surah.surahInfo.id}</p>
 
-			<p>{surah.name}</p>
-			{surah.verses.map((verse) => (
+			{/* <p>{surah.SurahDetail.name_simple}</p> */}
+
+			{surah.ayahs.words!.map((ayah) => (
 				<Text
-					key={verse.id}
+					key={ayah.id}
 					fontSize='xxx-large'
 					fontFamily='Uthman'
 				>
-					{verse.text}
+					{ayah.text}
 				</Text>
 			))}
 		</div>

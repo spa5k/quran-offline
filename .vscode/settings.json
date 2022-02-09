@@ -41,6 +41,7 @@
 		"data",
 		"quran",
 		"routing",
-		"fonts"
+		"fonts",
+		"types"
 	]
 }

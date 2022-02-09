@@ -12,6 +12,7 @@ export const ChaptersGrid = (): JSX.Element => {
 			const result: SurahList[] = await getSurahList();
 			setData(result);
 			setLoading(false);
+			console.log(result);
 		};
 		fetchData().catch(console.error);
 	}, []);

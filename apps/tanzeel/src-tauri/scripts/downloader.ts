@@ -12,10 +12,10 @@ const downloadSurahList = async ({ lang }: LangProps): Promise<void> => {
 
 	// first check if chapters list has already been downloaded -
 	// if it has, then skip it
-	const downloadedSurahs = await fs.pathExists(`src-tauri/scripts/download/chapters/list/${lang}.json`);
+	const downloadedSurahs = await fs.pathExists(`src-tauri/scripts/download/surahs/list/${lang}.json`);
 
 	if (!downloadedSurahs) {
-		await fs.outputJSON(`src-tauri/scripts/download/chapters/list/${lang}.json`, surahs.chapters, { spaces: 2 });
+		await fs.outputJSON(`src-tauri/scripts/download/surahs/list/${lang}.json`, surahs.chapters, { spaces: 2 });
 		console.log('Downloaded surahs list for lang - ', lang);
 	} else {
 		console.log('Already have surahs list for lang - ', lang);
@@ -27,8 +27,6 @@ const downloadSurahInfo = async ({ lang }: LangProps): Promise<void> => {
 		chapterNumber: number;
 		lang: string;
 	};
-
-	console.log('Downloading for Lang ', lang);
 
 	const q: queueAsPromised<Task> = fastq.promise(asyncWorker, 2);
 	for (let index: number = 1; index <= 114; index++) {
@@ -88,14 +86,51 @@ const downloadAllAyahsBySurah = async ({ lang }: { lang: string; }): Promise<voi
 	}
 };
 
+const downloadSurahDetails = async ({ lang }: LangProps): Promise<void> => {
+	type Task = {
+		chapterNumber: number;
+	};
+
+	const q: queueAsPromised<Task> = fastq.promise(asyncWorker, 2);
+
+	for (let index: number = 1; index <= 114; index++) {
+		await q.push({ chapterNumber: index });
+	}
+
+	async function asyncWorker(arg: Task): Promise<void> {
+		const chapterNumber: number = arg.chapterNumber;
+
+		// first check if the chapter has already been downloaded -
+		// if it has, then skip it
+		const downloadedSurah: boolean = await fs.pathExists(`src-tauri/scripts/download/surahs/detail/${chapterNumber}/${lang}.json`);
+
+		if (!downloadedSurah) {
+			const chapterInfo = await $fetch(
+				`https://api.quran.com/api/v4/chapters/${chapterNumber}?language=${lang}`,
+				{ method: 'GET' },
+			);
+			await fs.outputJSON(`src-tauri/scripts/download/surahs/detail/${chapterNumber}/${lang}.json`, chapterInfo.chapter, { spaces: 2 });
+
+			console.log(`Downloaded Details for surah ${chapterNumber} lang - ${lang}`);
+		} else {
+			console.log(`Already have Details for surah - ${chapterNumber} lang - ${lang}`);
+		}
+	}
+};
+
 const main = async (): Promise<void> => {
 	// Download All Verses Chapter by Chapter
-	const langCodes = ['bn', 'en', 'es', 'fr', 'id', 'ru', 'sv', 'tr', 'ur', 'zh'];
-	for (const lang of langCodes) {
-		await downloadSurahInfo({ lang });
-		await downloadAllAyahsBySurah({ lang });
-		await downloadSurahList({ lang });
-	}
+	// const langCodes = ['bn', 'en', 'es', 'fr', 'id', 'ru', 'sv', 'tr', 'ur', 'zh'];
+	const lang = 'en';
+	// for (const lang of langCodes) {
+	await Promise.all([
+		downloadSurahList({ lang }),
+		downloadSurahInfo({ lang }),
+		downloadAllAyahsBySurah({ lang }),
+		downloadSurahDetails({ lang }),
+	]);
+
+	// }
 };
 
 main().catch((err) => console.error(err));

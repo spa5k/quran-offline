@@ -1,21 +1,17 @@
 import { readTextFile } from '@tauri-apps/api/fs';
-import { Chapter } from './type';
+import { getSurahDetails } from './getSurahDetails';
+import { getSurahInfo } from './getSurahInfo';
+import { Surah, SurahDetail, SurahInfo } from './type';
 
 export const getSurahByNumber = async (number: string): Promise<{
-	verses: Chapter[];
-	chapterInfo: Chapter[];
+	ayahs: Surah;
+	surahInfo: SurahInfo;
+	surahDetail: SurahDetail;
 }> => {
-	console.log('number', number);
-	const response = await readTextFile(`scripts/download/verses/${number}/en.json`);
-	const parsedData: Chapter[] = JSON.parse(response);
-	const chapterInfo = await getChapterInfo(number);
+	const response: string = await readTextFile(`scripts/download/surahs/ayahs/${number}/en.json`);
+	const ayahs: Surah = JSON.parse(response);
+	const surahInfo: SurahInfo = await getSurahInfo(number);
+	const surahDetail: SurahDetail = await getSurahDetails(number);
 
-	return { verses: parsedData, chapterInfo };
-};
-
-export const getChapterInfo = async (number: string) => {
-	const response = await readTextFile(`scripts/download/info/${number}/en.json`);
-	const parsedData: Chapter[] = JSON.parse(response);
-
-	return parsedData;
+	return { ayahs, surahInfo, surahDetail };
 };
