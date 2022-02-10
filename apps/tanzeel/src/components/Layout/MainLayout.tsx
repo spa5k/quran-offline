@@ -1,8 +1,7 @@
 import { Flex, HStack, VStack } from '@chakra-ui/react';
 import { DefaultGenerics, Outlet, ReactLocation, Router } from 'react-location';
-import { getSurahByNumber } from '../../utils/getSurahByNumber';
 import { NavBar } from '../Navbar';
-import { ChapterDisplay } from '../Surah/SurahDisplay';
+import { SurahDisplay } from '../Surah/SurahDisplay';
 import { LeftSection, MiddleSection, RightSection } from '.';
 
 export const MainLayout = (): JSX.Element => {
@@ -29,9 +28,9 @@ export const MainLayout = (): JSX.Element => {
 							children: [
 								{
 									path: ':number',
-									element: <ChapterDisplay />,
+									element: <SurahDisplay />,
 									loader: async ({ params: { number } }) => ({
-										surah: await getSurahByNumber(number),
+										number,
 									}),
 								},
 							],
