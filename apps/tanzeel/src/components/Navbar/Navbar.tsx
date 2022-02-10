@@ -24,10 +24,20 @@ import IconSun from '~icons/heroicons-solid/sun';
 import IconSearch from '~icons/mdi/search';
 import IconNight from '~icons/mdi/weather-night';
 
-export const NavBar = () => {
+export const NavBar = (): JSX.Element => {
 	const { colorMode, toggleColorMode } = useColorMode();
-	const bg = useColorModeValue('white', 'gray.800');
-	const mobileNav = useDisclosure();
+	const bg: 'white' | 'gray.800' = useColorModeValue('white', 'gray.800');
+	const mobileNav: {
+		isOpen: boolean;
+		onOpen: () => void;
+		onClose: () => void;
+		onToggle: () => void;
+		isControlled: boolean;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		getButtonProps: (props?: any) => any;
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		getDisclosureProps: (props?: any) => any;
+	} = useDisclosure();
 
 	return (
 		<React.Fragment>

@@ -19,12 +19,12 @@ export const ChapterBox = (
 		>
 			<Flex w='full' justifyContent='space-between' fontSize='xl' fontWeight='bold' mb={2}>
 				<Badge colorScheme='green' ml='1' fontSize='0.8em'>#{id}</Badge>
-				<IconHeart color='#2da861' />
+				<IconHeart color='quran.500' />
 			</Flex>
 			<VStack justifyContent='space-between' alignItems='flex-start'>
 				<Link to={`/surah/${id}`}>
 					<Heading as='h3' size='md' fontWeight={600}>
-						{name_simple} <chakra.span fontFamily='IndoPak' ml={4} color='#2da861'>{name_arabic}</chakra.span>
+						{name_simple} <chakra.span fontFamily='IndoPak' ml={4} color='quran.500'>{name_arabic}</chakra.span>
 					</Heading>
 				</Link>
 				<Heading as='h3' size='md' fontWeight={600} color='gray.500'>

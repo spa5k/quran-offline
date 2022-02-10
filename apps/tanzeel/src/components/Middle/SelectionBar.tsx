@@ -1,6 +1,6 @@
 import { Box, Button, ButtonGroup, HStack } from '@chakra-ui/react';
 
-export const SelectionBar = () => (
+export const SelectionBar = (): JSX.Element => (
 	<HStack justify='left' width='full'>
 		<Box mr={20}>
 			<ButtonGroup>
