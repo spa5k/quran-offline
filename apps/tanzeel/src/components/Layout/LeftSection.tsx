@@ -1,7 +1,7 @@
 import { VStack } from '@chakra-ui/react';
 import { LeftSidebar } from '../Sidebar/LeftSidebar';
 
-export const LeftSection = () => (
+export const LeftSection = (): JSX.Element => (
 	<VStack
 		alignItems='center'
 		width={100}

@@ -2,7 +2,7 @@ import { Flex, FlexProps, IconButton } from '@chakra-ui/react';
 import { ReactText } from 'react';
 import { IconType } from 'react-icons';
 
-export const NavItem = ({ icon, children, ...rest }: NavItemProps) => (
+export const NavItem = ({ icon, children, ...rest }: NavItemProps): JSX.Element => (
 	<Flex
 		align='center'
 		p='4'
@@ -16,7 +16,7 @@ export const NavItem = ({ icon, children, ...rest }: NavItemProps) => (
 	</Flex>
 );
 
-export interface NavItemProps extends FlexProps {
+export type NavItemProps = {
 	icon: IconType;
 	children: ReactText;
-}
+} & FlexProps;

@@ -2,7 +2,7 @@ import { Wrap } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { getSurahList } from '../../utils/getChapterList';
 import { SurahList } from '../../utils/type';
-import { ChapterBox } from '../Chapter';
+import { ChapterBox } from '../Surah';
 
 export const ChaptersGrid = (): JSX.Element => {
 	const [data, setData] = useState<SurahList[]>([]);

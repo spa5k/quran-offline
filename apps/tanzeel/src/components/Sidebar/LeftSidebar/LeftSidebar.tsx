@@ -1,18 +1,18 @@
-import { Box, BoxProps, Drawer, DrawerContent, useDisclosure } from '@chakra-ui/react';
+import { Box, Drawer, DrawerContent, useDisclosure } from '@chakra-ui/react';
 import { IconType } from 'react-icons';
 import IconHeart from '~icons/akar-icons/heart';
 import IconBookOpen from '~icons/bx/bx-book-open';
 import IconSettings from '~icons/carbon/settings';
 import IconShare from '~icons/ci/share-outline';
 import IconHeadphone from '~icons/fluent/headphones-48-regular';
-import { NavItem } from './NavItem';
+import { SidebarContent } from './SidebarContentProps';
 
-interface LinkItemProps {
+type LinkItemProps = {
 	name: string;
 	icon: IconType;
-}
+};
 
-const LinkItems: Array<LinkItemProps> = [
+export const LinkItems: Array<LinkItemProps> = [
 	{ name: 'Quran', icon: IconBookOpen },
 	{ name: 'Bookmarks', icon: IconHeart },
 	{ name: 'Listen', icon: IconHeadphone },
@@ -20,7 +20,7 @@ const LinkItems: Array<LinkItemProps> = [
 	{ name: 'Settings', icon: IconSettings },
 ];
 
-export const LeftSidebar = () => {
+export const LeftSidebar = (): JSX.Element => {
 	const { isOpen, onClose } = useDisclosure();
 
 	return (
@@ -43,17 +43,3 @@ export const LeftSidebar = () => {
 		</Box>
 	);
 };
-
-interface SidebarProps extends BoxProps {
-	onClose: () => void;
-}
-
-const SidebarContent = ({ onClose, ...rest }: SidebarProps) => (
-	<Box h='full' {...rest}>
-		{LinkItems.map((link) => (
-			<NavItem key={link.name} icon={link.icon}>
-				{link.name}
-			</NavItem>
-		))}
-	</Box>
-);

@@ -11,7 +11,7 @@ type LocationGenerics = MakeGenerics<{
 	};
 }>;
 
-export const ChapterDisplay = () => {
+export const ChapterDisplay = (): JSX.Element => {
 	const {
 		data: { surah },
 	} = useMatch<LocationGenerics>();
