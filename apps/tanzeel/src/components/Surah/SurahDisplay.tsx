@@ -23,6 +23,7 @@ export const SurahDisplay = (): JSX.Element => {
 
 	const [surah, setSurah] = useState<SurahByNumber>();
 	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
 		if (number) {
 			const fetchData = async (): Promise<void> => {
@@ -38,14 +39,11 @@ export const SurahDisplay = (): JSX.Element => {
 	if (!surah || !surah.ayahs || !surah.surahDetail || !surah.surahInfo || loading) {
 		return <p>Loading...</p>;
 	}
-
-	console.log('data', surah.ayahs);
-
 	return (
 		<div>
 			{surah && <Text fontSize='xxx-large' fontFamily='surahnames'>{surah.surahDetail.name_arabic}</Text>}
 			<Flex flexDir='column'>
-				{surah && surah.ayahs.map((ayah) => <AyahLineDisplay ayah={ayah} />)}
+				{surah && surah.ayahs.map((ayah) => <AyahLineDisplay ayah={ayah} key={ayah.id} />)}
 			</Flex>
 		</div>
 	);

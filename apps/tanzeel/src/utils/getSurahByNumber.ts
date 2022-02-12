@@ -10,7 +10,7 @@ export const getSurahByNumber = async (number: number): Promise<{
 }> => {
 	const response: string = await readTextFile(`scripts/download/surahs/ayahs/${number}/en.json`, { dir: BaseDirectory.Resource });
 
-	const ayahs: Surah = JSON.parse(response);
+	const ayahs: Ayahs[] = JSON.parse(response);
 	const surahInfo: SurahInfo = await getSurahInfo(number);
 	const surahDetail: SurahDetail = await getSurahDetails(number);
 

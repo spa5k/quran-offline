@@ -1,17 +1,17 @@
-import { chakra, Flex, HStack, Text, VStack } from '@chakra-ui/react';
+import { chakra, Text, VStack, Wrap, WrapItem } from '@chakra-ui/react';
 import { Ayahs } from '../../utils/type';
 
 export const AyahLineDisplay = ({ ayah: ayahLine }: { ayah: Ayahs; }): JSX.Element => (
-	<VStack flexDir='row-reverse' justifyContent='flex-start' spacing={19}>
-		<HStack flexDir='row-reverse' spacing={19}>
+	<VStack spacing={30}>
+		<Wrap spacing={5} dir='rtl' alignItems='flex-end'>
 			{ayahLine.words?.map((word) => (
-				<Flex flexDir='column' alignItems='flex-end'>
+				<WrapItem flexDir='column' key={`word-${word.id}`} alignItems='center'>
 					<Text fontSize='xxx-large' fontFamily='UthmanicHafs'>
 						{word.text_indopak}
 					</Text>
-					<chakra.span>{word.translation?.text}</chakra.span>
-				</Flex>
+					<chakra.span fontSize='sm'>{word.translation?.text}</chakra.span>
+				</WrapItem>
 			))}
-		</HStack>
+		</Wrap>
 	</VStack>
 );
