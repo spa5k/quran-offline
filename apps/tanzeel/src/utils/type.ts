@@ -39,7 +39,7 @@ export enum LanguageName {
 }
 
 // Surah/Ayahs
-export type Surah = {
+export type Ayahs = {
 	id?: number;
 	verse_number?: number;
 	verse_key?: string;
@@ -54,10 +54,10 @@ export type Surah = {
 	text_imlaei_simple?: string;
 	text_indopak?: string;
 	page_number?: number;
-	words?: Ayah[];
+	words?: SingleAyah[];
 };
 
-export type Ayah = {
+export type SingleAyah = {
 	id?: number;
 	position?: number;
 	audio_url?: null | string;
