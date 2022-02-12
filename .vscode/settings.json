@@ -43,6 +43,7 @@
 		"routing",
 		"fonts",
 		"types",
+		"tauri"
 		"surah"
 	]
 }
