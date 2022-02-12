@@ -54,10 +54,10 @@ export type Ayahs = {
 	text_imlaei_simple?: string;
 	text_indopak?: string;
 	page_number?: number;
-	words?: AyahLine[];
+	words?: SingleAyah[];
 };
 
-export type AyahLine = {
+export type SingleAyah = {
 	id?: number;
 	position?: number;
 	audio_url?: null | string;

@@ -1,9 +1,9 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, VStack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { MakeGenerics, useMatch } from 'react-location';
 import { getSurahByNumber } from '../../utils/getSurahByNumber';
 import { Ayahs, SurahDetail, SurahInfo } from '../../utils/type';
-import { AyahLineDisplay } from './AyahLineDisplay';
+import { AyahDisplay } from './AyahDisplay';
 type LocationGenerics = MakeGenerics<{
 	LoaderData: {
 		number: number;
@@ -40,11 +40,11 @@ export const SurahDisplay = (): JSX.Element => {
 		return <p>Loading...</p>;
 	}
 	return (
-		<div>
+		<VStack alignItems='center' justify='center' width='full'>
 			{surah && <Text fontSize='xxx-large' fontFamily='surahnames'>{surah.surahDetail.name_arabic}</Text>}
-			<Flex flexDir='column'>
-				{surah && surah.ayahs.map((ayah) => <AyahLineDisplay ayah={ayah} key={ayah.id} />)}
+			<Flex>
+				{surah && <AyahDisplay ayahs={surah.ayahs} />}
 			</Flex>
-		</div>
+		</VStack>
 	);
 };
