@@ -1,10 +1,10 @@
 import { BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
 import { getSurahDetails } from './getSurahDetails';
 import { getSurahInfo } from './getSurahInfo';
-import { Surah, SurahDetail, SurahInfo } from './type';
+import { Ayahs, SurahDetail, SurahInfo } from './type';
 
-export const getSurahByNumber = async (number: string): Promise<{
-	ayahs: Surah;
+export const getSurahByNumber = async (number: number): Promise<{
+	ayahs: Ayahs[];
 	surahInfo: SurahInfo;
 	surahDetail: SurahDetail;
 }> => {
