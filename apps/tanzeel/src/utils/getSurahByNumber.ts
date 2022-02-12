@@ -1,4 +1,4 @@
-import { readTextFile } from '@tauri-apps/api/fs';
+import { BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
 import { getSurahDetails } from './getSurahDetails';
 import { getSurahInfo } from './getSurahInfo';
 import { Surah, SurahDetail, SurahInfo } from './type';
@@ -8,7 +8,8 @@ export const getSurahByNumber = async (number: string): Promise<{
 	surahInfo: SurahInfo;
 	surahDetail: SurahDetail;
 }> => {
-	const response: string = await readTextFile(`scripts/download/surahs/ayahs/${number}/en.json`);
+	const response: string = await readTextFile(`scripts/download/surahs/ayahs/${number}/en.json`, { dir: BaseDirectory.Resource });
+
 	const ayahs: Surah = JSON.parse(response);
 	const surahInfo: SurahInfo = await getSurahInfo(number);
 	const surahDetail: SurahDetail = await getSurahDetails(number);

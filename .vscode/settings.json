@@ -42,6 +42,7 @@
 		"quran",
 		"routing",
 		"fonts",
-		"types"
+		"types",
+		"tauri"
 	]
 }

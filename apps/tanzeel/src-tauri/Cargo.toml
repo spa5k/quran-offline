@@ -1,23 +1,23 @@
 [package]
 name = "app"
-version = "0.0.0"
+version = "0.0.1"
 authors = ["you"]
-build = "src/build.rs"
 default-run = "app"
-edition = "2018"
+edition = "2021"
 license = ""
 repository = ""
-description = "A simple Quran App"
+rust-version = "1.57"
+description = "A Tauri App"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [build-dependencies]
-tauri-build = { version = "1.0.0-beta.4" }
+tauri-build = { version = "1.0.0-rc.0", features = [] }
 
 [dependencies]
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-tauri = { version = "1.0.0-beta.8", features = ["api-all"] }
+tauri = { version = "1.0.0-rc.0", features = ["api-all"] }
 
 [features]
 default = ["custom-protocol"]

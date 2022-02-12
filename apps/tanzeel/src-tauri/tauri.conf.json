@@ -1,7 +1,7 @@
 {
 	"package": {
-		"productName": "quran",
-		"version": "0.1.0"
+		"productName": "tanzeel",
+		"version": "0.0.1"
 	},
 	"build": {
 		"distDir": "../dist",
@@ -22,7 +22,7 @@
 				"icons/icon.ico"
 			],
 			"resources": [
-				"./scripts/download/*/**"
+				"scripts/download/*/**"
 			],
 			"externalBin": [],
 			"copyright": "",
@@ -39,6 +39,7 @@
 				"useBootstrapper": false,
 				"exceptionDomain": "",
 				"signingIdentity": null,
+				"providerShortName": null,
 				"entitlements": null
 			},
 			"windows": {
@@ -51,11 +52,14 @@
 			"active": false
 		},
 		"allowlist": {
-			"all": true
+			"all": true,
+			"fs": {
+				"scope": ["$RESOURCE/scripts/download/*/**"]
+			}
 		},
 		"windows": [
 			{
-				"title": "Quran",
+				"title": "Tanzeel",
 				"width": 800,
 				"height": 600,
 				"resizable": true,
@@ -63,7 +67,8 @@
 			}
 		],
 		"security": {
-			"csp": "default-src blob: data: filesystem: ws: wss: http: https: tauri: 'unsafe-eval' 'unsafe-inline' 'self' img-src: 'self'"
+			"csp": "default-src 'self'",
+			"freezePrototype": false
 		}
 	}
 }
