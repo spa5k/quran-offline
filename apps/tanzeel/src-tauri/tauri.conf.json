@@ -22,7 +22,7 @@
 				"icons/icon.ico"
 			],
 			"resources": [
-				"scripts/download/*/**"
+				"data/*/**"
 			],
 			"externalBin": [],
 			"copyright": "",
@@ -54,7 +54,7 @@
 		"allowlist": {
 			"all": true,
 			"fs": {
-				"scope": ["$RESOURCE/scripts/download/*/**"]
+				"scope": ["$RESOURCE/data/*/**"]
 			}
 		},
 		"windows": [

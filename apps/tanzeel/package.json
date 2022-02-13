@@ -7,6 +7,7 @@
 		"preview": "vite preview",
 		"tauri": "tauri",
 		"download": "ts-node --project src-tauri/scripts/tsconfig.dev.json src-tauri/scripts/downloader.ts",
+		"clean": "ts-node --project src-tauri/scripts/tsconfig.dev.json src-tauri/scripts/cleaner.ts",
 		"lint": "eslint src/"
 	},
 	"dependencies": {
