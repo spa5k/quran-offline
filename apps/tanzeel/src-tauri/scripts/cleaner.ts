@@ -118,6 +118,7 @@ const additionalInfoSurahList = async ({ lang }: { lang: string; }): Promise<voi
 			totalVerses: surah.verses_count,
 			translatedName: surah.translated_name.name,
 			versesCount: surah.verses_count,
+			id: surah.id,
 		});
 	}
 	await fs.outputJSON(`src-tauri/data/surah/list/${lang}.json`, finalized, { spaces: 2 });

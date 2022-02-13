@@ -54,7 +54,7 @@
 		"allowlist": {
 			"all": true,
 			"fs": {
-				"scope": ["$RESOURCE/data/*/**"]
+				"scope": ["$RESOURCE/data/*/**", "$RESOURCE/data/surah/ayahs/**/**"]
 			}
 		},
 		"windows": [

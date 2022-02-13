@@ -12,5 +12,6 @@ module.exports = {
 		'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
 		'security-node/detect-crlf': 'off',
 		'@typescript-eslint/naming-convention': 'off',
+		'@rushstack/no-new-null': 'off',
 	},
 };

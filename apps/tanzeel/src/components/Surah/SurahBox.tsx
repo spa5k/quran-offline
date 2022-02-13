@@ -1,12 +1,12 @@
 import { Badge, chakra, Flex, Heading, useColorModeValue, VStack, WrapItem } from '@chakra-ui/react';
 import { Link } from 'react-location';
 import IconHeart from '~icons/akar-icons/heart';
-import { SurahList } from '../../utils/type';
+import { Surah } from '../../utils/typev2';
 
-export const ChapterBox = (
-	{ id, name_arabic, name_simple, translated_name }: SurahList,
+export const SurahBox = (
+	{ nameArabic, nameSimple, translatedName, id }: Surah,
 ): JSX.Element => (
-	<WrapItem>
+	<WrapItem key={id}>
 		<VStack
 			w='350px'
 			height='150px'
@@ -18,17 +18,17 @@ export const ChapterBox = (
 			alignItems='flex-start'
 		>
 			<Flex w='full' justifyContent='space-between' fontSize='xl' fontWeight='bold' mb={2}>
-				<Badge colorScheme='green' ml='1' fontSize='0.8em'>#{id}</Badge>
+				<Badge colorScheme='green' ml='1' fontSize='0.8em'># {id}</Badge>
 				<IconHeart color='quran.500' />
 			</Flex>
 			<VStack justifyContent='space-between' alignItems='flex-start'>
 				<Link to={`/surah/${id}`}>
 					<Heading as='h3' size='md' fontWeight={600}>
-						{name_simple} <chakra.span fontFamily='IndoPak' ml={4} color='quran.500'>{name_arabic}</chakra.span>
+						{nameSimple} <chakra.span fontFamily='IndoPak' ml={4} color='quran.500'>{nameArabic}</chakra.span>
 					</Heading>
 				</Link>
 				<Heading as='h3' size='md' fontWeight={600} color='gray.500'>
-					{translated_name!.name}
+					{translatedName}
 				</Heading>
 			</VStack>
 		</VStack>
