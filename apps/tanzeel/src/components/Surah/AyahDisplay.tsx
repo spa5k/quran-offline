@@ -1,16 +1,14 @@
 import { Wrap } from '@chakra-ui/react';
-import { Ayahs, SingleAyah } from '../../utils/type';
+import { Lafz } from '../../utils/types';
 import { AyahLineDisplay } from './AyahLineDisplay';
 
-export const AyahDisplay = ({ ayahs }: { ayahs: Ayahs[]; }): JSX.Element => {
+export const AyahDisplay = ({ ayahs }: { ayahs: Lafz[][]; }): JSX.Element => {
 	// extract all ayahs.words into a single array then map through it.
-	const ayahArray: SingleAyah[] = [];
+	const ayahArray: Lafz[] = [];
 	ayahs.forEach((ayah) => {
-		if (ayah && ayah.words && ayah.words?.length > 0) {
-			ayah.words.forEach((word) => {
-				ayahArray.push(word);
-			});
-		}
+		ayah.forEach((word) => {
+			ayahArray.push(word);
+		});
 	});
 
 	return (

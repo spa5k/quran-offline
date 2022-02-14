@@ -1,7 +1,7 @@
 import { Badge, chakra, Flex, Heading, useColorModeValue, VStack, WrapItem } from '@chakra-ui/react';
 import { Link } from 'react-location';
 import IconHeart from '~icons/akar-icons/heart';
-import { Surah } from '../../utils/typev2';
+import { Surah } from '../../utils/types';
 
 export const SurahBox = (
 	{ nameArabic, nameSimple, translatedName, id }: Surah,

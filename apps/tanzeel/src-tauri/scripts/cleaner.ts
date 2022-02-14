@@ -174,7 +174,7 @@ const separateSurahVerses = async ({ lang, chapterNumber }: { lang: string; chap
 		endingVerse,
 		totalVerses,
 	};
-	await fs.outputJSON(`src-tauri/data/surah/ayahs/${chapterNumber}/${lang}.json`, surahInfoA, { spaces: 2 });
+	await fs.outputJSON(`src-tauri/data/list/${lang}-${chapterNumber}.json`, surahInfoA, { spaces: 2 });
 
 	surah.map(async (singleAyah: AyahTypeNoWords) => {
 		const ayah = singleAyah.words;

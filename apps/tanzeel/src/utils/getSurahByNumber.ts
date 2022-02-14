@@ -1,28 +1,31 @@
 import { BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
 import { getSingleAyah } from './getSingleAyah';
 import { getSurahInfo } from './getSurahInfo';
-import { Ayah, SurahInfo } from './typev2';
-// apps\tanzeel\src-tauri\data\surah\ayahs\1\en.json
+import { Ayah, Lafz, SurahInfo } from './types';
+
 export const getSurahByNumber = async (number: number): Promise<{
 	ayahs: Ayah;
 	surahInfo: SurahInfo;
+	lafz: Lafz[][];
 }> => {
-	const address: string = `data/surah/ayahs/${number}/en.json`;
-	console.log(number, address);
-	const response: string = await readTextFile(address, { dir: BaseDirectory.Resource });
-
+	let response: string = '';
+	try {
+		response = await readTextFile(`data/list/en-1.json`, { dir: BaseDirectory.Resource });
+	} catch (err) {
+		console.log('err', err);
+	}
 	const ayahs: Ayah = JSON.parse(response);
 	const startingVerse: number = ayahs.startingVerse;
 	const endingVerse: number = ayahs.endingVerse;
-	const verses: Ayah[] = [];
+	const verses: Lafz[][] = [];
 	for (let i: number = startingVerse; i <= endingVerse; i++) {
-		const ayah: Ayah = await getSingleAyah(number, i);
+		const ayah: Lafz[] = await getSingleAyah(number, i);
 
 		verses.push(ayah);
 	}
-	ayahs.lafz = verses;
+	const lafz: Lafz[][] = verses;
 
 	const surahInfo: SurahInfo = await getSurahInfo(number);
 
-	return { ayahs, surahInfo };
+	return { ayahs, surahInfo, lafz };
 };

@@ -1,4 +1,4 @@
-export type Word = {
+export type Lafz = {
 	id?: number;
 	position?: number;
 	audioURL?: null | string;
@@ -30,7 +30,7 @@ export type Ayah = {
 	startingVerse: number;
 	endingVerse: number;
 	totalVerses?: number;
-	lafz?: Word[];
+	lafz?: Lafz[];
 };
 
 export type SurahInfo = {
