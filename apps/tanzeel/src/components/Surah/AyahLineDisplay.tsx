@@ -1,24 +1,11 @@
 import { chakra, Text, WrapItem } from '@chakra-ui/react';
-import { SingleAyah } from '../../utils/type';
+import { Word } from '../../utils/types';
 
-export const AyahLineDisplay = ({ ayah }: { ayah: SingleAyah; }): JSX.Element => (
+export const AyahLineDisplay = ({ ayah }: { ayah: Word; }): JSX.Element => (
 	<WrapItem flexDir='column' alignItems='center'>
 		<Text fontSize='xxx-large' fontFamily='IndoPak'>
-			{ayah.text_indopak}
+			{ayah.textIndopak}
 		</Text>
-		<chakra.span>{ayah.translation?.text}</chakra.span>
+		<chakra.span>{ayah.translation}</chakra.span>
 	</WrapItem>
-	// <VStack spacing={30}>
-	// 	<p>{ayahLine.id}</p>
-	// 	<Wrap spacing={5} dir='rtl' alignItems='flex-end'>
-	// 		{ayahLine.words?.map((word) => (
-	// 			<WrapItem flexDir='column' key={`word-${word.id}`} alignItems='center'>
-	// 				<Text fontSize='xxx-large' fontFamily='UthmanicHafs'>
-	// 					{word.text_indopak}
-	// 				</Text>
-	//
-	// 			</WrapItem>
-	// 		))}
-	// 	</Wrap>
-	// </VStack>
 );

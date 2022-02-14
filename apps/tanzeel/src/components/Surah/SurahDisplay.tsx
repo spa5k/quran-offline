@@ -1,19 +1,14 @@
-import { Text, VStack } from '@chakra-ui/react';
+import { Flex, Text, VStack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { MakeGenerics, useMatch } from 'react-location';
 import { getSurahByNumber } from '../../utils/getSurahByNumber';
-// import { Ayahs, SurahDetail, SurahInfo } from '../../utils/type';
-import { Ayah, SurahInfo } from '../../utils/typev2';
+import { Ayah, SurahInfo, Word } from '../../utils/types';
+import { AyahDisplay } from './AyahDisplay';
 type LocationGenerics = MakeGenerics<{
 	LoaderData: {
 		number: number;
 	};
 }>;
-
-type SurahByNumber = {
-	ayahs: Ayah[];
-	surahInfo: SurahInfo;
-};
 
 export const SurahDisplay = (): JSX.Element => {
 	const {
@@ -22,6 +17,7 @@ export const SurahDisplay = (): JSX.Element => {
 
 	const [surah, setSurah] = useState<{
 		ayahs: Ayah;
+		lafz: Word[][];
 		surahInfo: SurahInfo;
 	}>();
 	const [loading, setLoading] = useState(true);
@@ -32,26 +28,26 @@ export const SurahDisplay = (): JSX.Element => {
 				const result: {
 					ayahs: Ayah;
 					surahInfo: SurahInfo;
+					lafz: Word[][];
 				} = await getSurahByNumber(number);
 				setSurah(result);
 				setLoading(false);
 			};
-			fetchData().catch(console.error);
+			fetchData().catch((error) => console.error('file', error));
 		}
 	}, [number]);
 
-	if (!surah || !surah.ayahs || !surah.surahInfo || loading) {
+	if (!surah || !surah.ayahs || loading) {
 		return <p>Loading...</p>;
 	}
-	console.log(surah);
+
 	return (
 		<VStack alignItems='center' justify='center' width='full'>
 			{surah && <Text fontSize='xxx-large' fontFamily='surahnames'>{surah.surahInfo.nameArabic}</Text>}
-			{
-				/* <Flex>
-				{surah && <AyahDisplay ayahs={surah.ayahs} />}
-			</Flex> */
-			}
+
+			<Flex>
+				{surah && <AyahDisplay ayahs={surah.lafz} />}
+			</Flex>
 		</VStack>
 	);
 };
