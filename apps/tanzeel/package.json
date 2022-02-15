@@ -7,6 +7,7 @@
 		"preview": "vite preview",
 		"tauri": "tauri",
 		"download": "ts-node --project src-tauri/scripts/tsconfig.dev.json src-tauri/scripts/downloader.ts",
+		"clean": "ts-node --project src-tauri/scripts/tsconfig.dev.json src-tauri/scripts/cleaner.ts",
 		"lint": "eslint src/"
 	},
 	"dependencies": {
@@ -16,7 +17,7 @@
 		"@fontsource/lato": "^4.5.1",
 		"@fontsource/neuton": "^4.5.1",
 		"@fontsource/source-sans-pro": "^4.5.3",
-		"@tauri-apps/api": "^1.0.0-rc.0",
+		"@tauri-apps/api": "^1.0.0-rc.1",
 		"dayjs": "^1.10.7",
 		"fastq": "^1.13.0",
 		"framer-motion": "^6",
@@ -24,20 +25,23 @@
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-icons": "^4.3.1",
+		"react-infinite-scroller": "^1.2.5",
 		"react-location": "^3.3.4",
+		"react-use": "^17.3.2",
 		"unplugin-auto-import": "^0.5.11",
 		"vite-plugin-webfonts": "^0.2.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.17.2",
-		"@iconify/json": "^2.0.36",
+		"@iconify/json": "^2.1.0",
 		"@rushstack/eslint-patch": "^1.1.0",
 		"@spa5k/eslint-config": "^0.0.2",
 		"@svgr/core": "^6.2.1",
-		"@tauri-apps/cli": "^1.0.0-rc.2",
+		"@tauri-apps/cli": "^1.0.0-rc.4",
 		"@types/fs-extra": "^9.0.13",
 		"@types/react": "^17.0.39",
 		"@types/react-dom": "^17.0.11",
+		"@types/react-infinite-scroller": "^1.2.2",
 		"@vitejs/plugin-react": "^1.2.0",
 		"eslint": "^8.9.0",
 		"fs-extra": "^10.0.0",
@@ -49,7 +53,7 @@
 		"tslib": "^2.3.1",
 		"typescript": "^4.5.5",
 		"unplugin-icons": "^0.13.1",
-		"vite": "^2.8.1",
+		"vite": "^2.8.2",
 		"vite-plugin-svgr": "^1.0.1",
 		"vite-svg-loader": "^3.1.2"
 	}

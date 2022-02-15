@@ -22,7 +22,10 @@
 				"icons/icon.ico"
 			],
 			"resources": [
-				"scripts/download/*/**"
+				"data/**/**/*"
+				// "data/surah/list/*",
+				// "data/surah/info/**/*",
+				// "data/surah/ayahs/**/**/*"
 			],
 			"externalBin": [],
 			"copyright": "",
@@ -54,7 +57,8 @@
 		"allowlist": {
 			"all": true,
 			"fs": {
-				"scope": ["$RESOURCE/scripts/download/*/**"]
+				"scope": ["$RESOURCE/data/**/**/*"],
+				"all": true // enable all FS APIs
 			}
 		},
 		"windows": [
