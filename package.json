@@ -29,5 +29,5 @@
 			"@commitlint/config-conventional"
 		]
 	},
-	"packageManager": "pnpm@6.30.0"
+	"packageManager": "pnpm@6.31.0"
 }
