@@ -1,10 +1,10 @@
 import { Box, Flex, Heading, HStack, Text } from '@chakra-ui/react';
 import IconUser from '~icons/el/user';
-export type SalamComponentProps = {
+export interface SalamComponentProps {
 	user: {
 		name: string;
 	};
-};
+}
 
 export const SalamComponent = ({ user }: SalamComponentProps): JSX.Element => {
 	if (!user.name) {

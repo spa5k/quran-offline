@@ -13,7 +13,7 @@ export const AyahDisplay = ({ ayahs }: { ayahs: Lafz[][]; }): JSX.Element => {
 
 	return (
 		<Wrap dir='rtl' spacing={7} width={700}>
-			{ayahArray.map((ayah) => <AyahLineDisplay ayah={ayah} key={ayah.id} />)}
+			{ayahArray.map((ayah) => <AyahLineDisplay ayah={ayah} key={`${ayah.id}-${ayah.text}`} />)}
 		</Wrap>
 	);
 };

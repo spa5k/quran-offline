@@ -1,4 +1,4 @@
-export type Lafz = {
+export interface Lafz {
 	id?: number;
 	position?: number;
 	audioURL?: null | string;
@@ -12,9 +12,9 @@ export type Lafz = {
 	pageNumber?: number;
 	translation?: string;
 	transliteration?: null | string;
-};
+}
 
-export type Ayah = {
+export interface Ayah {
 	id?: number;
 	hizbNumber?: number;
 	verseNumber?: number;
@@ -31,9 +31,9 @@ export type Ayah = {
 	endingVerse: number;
 	totalVerses?: number;
 	lafz?: Lafz[];
-};
+}
 
-export type SurahInfo = {
+export interface SurahInfo {
 	bismillahPre?: boolean;
 	chapterID?: number;
 	id?: number;
@@ -47,11 +47,11 @@ export type SurahInfo = {
 	text?: string;
 	translatedName?: string;
 	versesCount?: number;
-};
+}
 
 export type SurahList = Surah[];
 
-export type Surah = {
+export interface Surah {
 	bismillahPre?: boolean;
 	endingVerse?: number;
 	nameArabic?: string;
@@ -64,7 +64,7 @@ export type Surah = {
 	translatedName?: string;
 	versesCount?: number;
 	id: number;
-};
+}
 
 export enum RevelationPlace {
 	Madinah = 'madinah',

@@ -9,9 +9,16 @@ module.exports = {
 	parserOptions: { tsconfigRootDir: __dirname },
 	rules: {
 		'no-console': 'off',
-		'@typescript-eslint/consistent-type-definitions': ['error', 'type'],
+		'@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
 		'security-node/detect-crlf': 'off',
 		'@typescript-eslint/naming-convention': 'off',
 		'@rushstack/no-new-null': 'off',
+		'@typescript-eslint/typedef': [
+			'error',
+			{
+				'arrowParameter': false,
+				'variableDeclaration': false,
+			},
+		],
 	},
 };

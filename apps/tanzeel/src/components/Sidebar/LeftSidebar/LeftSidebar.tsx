@@ -7,10 +7,10 @@ import IconShare from '~icons/ci/share-outline';
 import IconHeadphone from '~icons/fluent/headphones-48-regular';
 import { SidebarContent } from './SidebarContentProps';
 
-type LinkItemProps = {
+interface LinkItemProps {
 	name: string;
 	icon: IconType;
-};
+}
 
 export const LinkItems: Array<LinkItemProps> = [
 	{ name: 'Quran', icon: IconBookOpen },
