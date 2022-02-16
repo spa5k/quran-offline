@@ -6,6 +6,7 @@ import { getAyahsPagination } from '../../utils/getAyahsPagination';
 import { getSurahByNumber } from '../../utils/getSurahByNumber';
 import { Ayah, Lafz, SurahInfo } from '../../utils/types';
 import { AyahDisplay } from './AyahDisplay';
+import { FontChanger } from './Font/FontChanger';
 
 type LocationGenerics = MakeGenerics<{
 	LoaderData: {
@@ -87,6 +88,7 @@ export const SurahDisplay = (): JSX.Element => {
 
 	return (
 		<VStack alignItems='center' justify='center' width='full'>
+			<FontChanger />
 			{surah && <Text fontSize='xxx-large' fontFamily='surahnames'>{surah.surahInfo.nameArabic}</Text>}
 
 			{lafzs.length > 0 && <AyahDisplay ayahs={lafzs} />}
