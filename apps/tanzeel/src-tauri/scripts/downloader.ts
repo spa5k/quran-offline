@@ -3,9 +3,9 @@ import fastq from 'fastq';
 import fs from 'fs-extra';
 import { $fetch } from 'ohmyfetch';
 
-type LangProps = {
+interface LangProps {
 	lang: string;
-};
+}
 
 const downloadSurahList = async ({ lang }: LangProps): Promise<void> => {
 	const surahs = await $fetch(`https://api.quran.com/api/v4/chapters?language=${lang}`, { method: 'GET' });
@@ -23,10 +23,10 @@ const downloadSurahList = async ({ lang }: LangProps): Promise<void> => {
 };
 
 const downloadSurahInfo = async ({ lang }: LangProps): Promise<void> => {
-	type Task = {
+	interface Task {
 		chapterNumber: number;
 		lang: string;
-	};
+	}
 
 	const q: queueAsPromised<Task> = fastq.promise(asyncWorker, 2);
 	for (let index: number = 1; index <= 114; index++) {
@@ -55,10 +55,10 @@ const downloadSurahInfo = async ({ lang }: LangProps): Promise<void> => {
 };
 
 const downloadAllAyahsBySurah = async ({ lang }: { lang: string; }): Promise<void> => {
-	type Task = {
+	interface Task {
 		chapterNumber: number;
 		lang: string;
-	};
+	}
 
 	const q: queueAsPromised<Task> = fastq.promise(asyncWorker, 2);
 	for (let index: number = 1; index <= 114; index++) {
@@ -122,9 +122,9 @@ const downloadAllAyahsBySurah = async ({ lang }: { lang: string; }): Promise<voi
 // }
 
 const downloadSurahDetails = async ({ lang }: LangProps): Promise<void> => {
-	type Task = {
+	interface Task {
 		chapterNumber: number;
-	};
+	}
 
 	const q: queueAsPromised<Task> = fastq.promise(asyncWorker, 2);
 
