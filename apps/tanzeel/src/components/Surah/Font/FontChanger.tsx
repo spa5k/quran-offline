@@ -3,7 +3,7 @@ import { useAtom } from 'jotai';
 import { changeFontAtom } from '../../../state/changeFontAtom';
 
 export enum TypesofFonts {
-	Uthmani = 'UthmanicHafs',
+	Uthmani = 'Uthmanic',
 	IndoPak = 'IndoPak',
 }
 

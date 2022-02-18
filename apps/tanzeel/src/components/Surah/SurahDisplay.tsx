@@ -6,7 +6,7 @@ import { getAyahsPagination } from '../../utils/getAyahsPagination';
 import { getSurahByNumber } from '../../utils/getSurahByNumber';
 import { Ayah, Lafz, SurahInfo } from '../../utils/types';
 import { FontChanger } from './Font/FontChanger';
-import { AyahDisplay } from './QuranLafz/LafzDisplay';
+import { AyahDisplay } from './QuranLafz/AyahDisplay';
 
 type LocationGenerics = MakeGenerics<{
 	LoaderData: {

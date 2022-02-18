@@ -1,19 +1,24 @@
-import { Wrap } from '@chakra-ui/react';
+import { chakra, Text, WrapItem } from '@chakra-ui/react';
+import { useAtom } from 'jotai';
+import { changeFontAtom } from '../../../state/changeFontAtom';
 import { Lafz } from '../../../utils/types';
-import { AyahLineDisplay } from './AyahDisplay';
+import { TypesofFonts } from '../Font/FontChanger';
 
-export const AyahDisplay = ({ ayahs: lafz }: { ayahs: Lafz[][]; }): JSX.Element => {
-	// extract all ayahs.words into a single array then map through it.
-	const ayahArray: Lafz[] = [];
-	lafz.forEach((ayah) => {
-		ayah.forEach((word) => {
-			ayahArray.push(word);
-		});
-	});
+export const LafzDisplay = ({ lafz }: { lafz: Lafz; }): JSX.Element => {
+	const [font] = useAtom<TypesofFonts>(changeFontAtom);
 
 	return (
-		<Wrap dir='rtl' spacing={7} width={700}>
-			{ayahArray.map((lafz) => <AyahLineDisplay lafz={lafz} key={`${lafz.id}-${lafz.text}`} />)}
-		</Wrap>
+		<WrapItem flexDir='column' alignItems='center'>
+			{lafz.charTypeName === 'end'
+				&& <Text fontFamily='UthmanicHafs' fontSize='xxx-large'>{lafz.textUthmani}</Text>}
+			{lafz.charTypeName === 'word' && (
+				<Text fontSize='xxx-large' fontFamily={`${font}`} sx={{ unicodeBidi: 'bidi-override' }}>
+					{font === TypesofFonts.Uthmani && lafz.textUthmani}
+					{font === TypesofFonts.IndoPak && lafz.textIndopak}
+				</Text>
+			)}
+
+			<chakra.span>{lafz.translation}</chakra.span>
+		</WrapItem>
 	);
 };

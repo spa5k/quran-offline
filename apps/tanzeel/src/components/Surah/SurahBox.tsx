@@ -8,7 +8,7 @@ export const SurahBox = (
 ): JSX.Element => (
 	<WrapItem key={id}>
 		<VStack
-			w='350px'
+			w='650px'
 			height='150px'
 			px={4}
 			py={3}
