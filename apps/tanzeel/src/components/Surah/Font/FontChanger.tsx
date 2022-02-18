@@ -1,8 +1,9 @@
 import { Button, ButtonGroup, Flex } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { changeFontAtom } from '../../../state/changeFontAtom';
-enum TypesofFonts {
-	Uthmani = 'UthmanicHafs',
+
+export enum TypesofFonts {
+	Uthmani = 'Uthmanic',
 	IndoPak = 'IndoPak',
 }
 

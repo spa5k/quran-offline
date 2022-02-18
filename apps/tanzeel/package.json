@@ -28,12 +28,12 @@
 		"react-infinite-scroller": "^1.2.5",
 		"react-location": "^3.3.4",
 		"react-use": "^17.3.2",
-		"unplugin-auto-import": "^0.5.11",
+		"unplugin-auto-import": "^0.6.0",
 		"vite-plugin-webfonts": "^0.2.1"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.17.2",
-		"@iconify/json": "^2.1.0",
+		"@babel/core": "^7.17.5",
+		"@iconify/json": "^2.1.3",
 		"@rushstack/eslint-patch": "^1.1.0",
 		"@spa5k/eslint-config": "^0.0.2",
 		"@svgr/core": "^6.2.1",
@@ -52,8 +52,8 @@
 		"ts-node": "^10.5.0",
 		"tslib": "^2.3.1",
 		"typescript": "^4.5.5",
-		"unplugin-icons": "^0.13.1",
-		"vite": "^2.8.2",
+		"unplugin-icons": "^0.13.2",
+		"vite": "^2.8.4",
 		"vite-plugin-svgr": "^1.0.1",
 		"vite-svg-loader": "^3.1.2"
 	}

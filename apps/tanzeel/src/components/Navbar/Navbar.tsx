@@ -93,9 +93,9 @@ export const NavBar = (): JSX.Element => {
 							title='Choc Home Page'
 							display='flex'
 							alignItems='center'
+							width='fit-content'
 						>
-							<Logo height={50} width='auto' />
-
+							<Logo height={50} width={50} />
 							<VisuallyHidden>Choc</VisuallyHidden>
 						</chakra.a>
 

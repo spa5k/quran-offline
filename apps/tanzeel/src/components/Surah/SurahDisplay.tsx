@@ -5,8 +5,8 @@ import { useIntersection } from 'react-use';
 import { getAyahsPagination } from '../../utils/getAyahsPagination';
 import { getSurahByNumber } from '../../utils/getSurahByNumber';
 import { Ayah, Lafz, SurahInfo } from '../../utils/types';
-import { AyahDisplay } from './AyahDisplay';
 import { FontChanger } from './Font/FontChanger';
+import { AyahDisplay } from './QuranLafz/AyahDisplay';
 
 type LocationGenerics = MakeGenerics<{
 	LoaderData: {
@@ -87,7 +87,7 @@ export const SurahDisplay = (): JSX.Element => {
 	}
 
 	return (
-		<VStack alignItems='center' justify='center' width='full'>
+		<VStack alignItems='center' justify='center' width='full' p={5}>
 			<FontChanger />
 			{surah && <Text fontSize='xxx-large' fontFamily='surahnames'>{surah.surahInfo.nameArabic}</Text>}
 

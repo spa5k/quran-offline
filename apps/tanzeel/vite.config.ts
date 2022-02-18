@@ -62,24 +62,6 @@ export default defineConfig({
 					},
 				],
 			}, {
-				family: 'meQuran',
-				variants: [{
-					weight: 800,
-					src: [
-						'fonts/hafs/meQuran/me_quran-2.woff2',
-					],
-				}, {
-					weight: 600,
-					src: [
-						'fonts/hafs/meQuran/me_quran-2.woff2',
-					],
-				}, {
-					weight: 400,
-					src: [
-						'fonts/hafs/meQuran/me_quran-2.woff2',
-					],
-				}],
-			}, {
 				family: 'UthmanicHafs',
 				variants: [{
 					weight: 800,
@@ -98,6 +80,24 @@ export default defineConfig({
 					src: [
 						'fonts/hafs/UthamicHafs/UthmanicHafs1Ver18.ttf',
 						'fonts/hafs/UthamicHafs/UthmanicHafs1Ver18.woff2',
+					],
+				}],
+			}, {
+				family: 'Uthmanic',
+				variants: [{
+					weight: 800,
+					src: [
+						'fonts/hafs/UthmanicHafs1.ttf',
+					],
+				}, {
+					weight: 600,
+					src: [
+						'fonts/hafs/UthmanicHafs1.ttf',
+					],
+				}, {
+					weight: 400,
+					src: [
+						'fonts/hafs/UthmanicHafs1.ttf',
 					],
 				}],
 			}, {
@@ -233,7 +233,7 @@ export default defineConfig({
 					],
 				}],
 			}],
-			emitCss: true,
+			emitCss: false,
 		}),
 	],
 });
