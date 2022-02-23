@@ -1,19 +1,12 @@
 import { Wrap } from '@chakra-ui/react';
 import { Lafz } from '../../../utils/types';
-import { LafzDisplay } from './LafzDisplay';
+import { AyahContainer } from './AyahContainer';
 
-export const AyahDisplay = ({ ayahs: lafz }: { ayahs: Lafz[][]; }): JSX.Element => {
-	// extract all ayahs.words into a single array then map through it.
-	const ayahArray: Lafz[] = [];
-	lafz.forEach((ayah) => {
-		ayah.forEach((word) => {
-			ayahArray.push(word);
-		});
-	});
-
+export const AyahDisplay = ({ ayahs, surahNumber }: { ayahs: Lafz[][]; surahNumber: number; }): JSX.Element => {
+	console.log('surahNumber: ', surahNumber);
 	return (
-		<Wrap dir='rtl' spacing={7} width={900}>
-			{ayahArray.map((lafz) => <LafzDisplay lafz={lafz} key={`${lafz.id}-${lafz.text}`} />)}
+		<Wrap dir='rtl' spacing={7} width={800} flexDir='row'>
+			{ayahs.map((ayah, index) => <AyahContainer ayahNumber={index + 1} lafz={ayah} key={`${index + 1}`} surahNumber={surahNumber} />)}
 		</Wrap>
 	);
 };

@@ -4,9 +4,10 @@ import { getSurahList } from '../../utils/getSurahList';
 import { Surah } from '../../utils/types';
 import { SurahBox } from '../Surah';
 
-export const ChaptersGrid = (): JSX.Element => {
+export const SurahsGrid = (): JSX.Element => {
 	const [data, setData] = useState<Surah[]>([]);
 	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
 		const fetchData = async (): Promise<void> => {
 			const result: Surah[] = await getSurahList();
@@ -19,6 +20,7 @@ export const ChaptersGrid = (): JSX.Element => {
 	if (loading && !data) {
 		return <Wrap>Loading...</Wrap>;
 	}
+
 	return (
 		<Wrap spacing='60px' justifyContent='space-around'>
 			{data.map((chapter) => (

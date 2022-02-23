@@ -91,7 +91,7 @@ export const SurahDisplay = (): JSX.Element => {
 			<FontChanger />
 			{surah && <Text fontSize='xxx-large' fontFamily='surahnames'>{surah.surahInfo.nameArabic}</Text>}
 
-			{lafzs.length > 0 && <AyahDisplay ayahs={lafzs} />}
+			{lafzs.length > 0 && <AyahDisplay ayahs={lafzs} surahNumber={surah.surahInfo.id as number} />}
 
 			{currentStartingVerse < endingVerse && <p ref={intersectionRef}>Loading...</p>}
 		</VStack>
