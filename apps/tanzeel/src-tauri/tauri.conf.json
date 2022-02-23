@@ -23,9 +23,6 @@
 			],
 			"resources": [
 				"data/**/**/*"
-				// "data/surah/list/*",
-				// "data/surah/info/**/*",
-				// "data/surah/ayahs/**/**/*"
 			],
 			"externalBin": [],
 			"copyright": "",
@@ -58,7 +55,7 @@
 			"all": true,
 			"fs": {
 				"scope": ["$RESOURCE/data/**/**/*"],
-				"all": true // enable all FS APIs
+				"all": true
 			}
 		},
 		"windows": [

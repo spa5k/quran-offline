@@ -44,6 +44,7 @@
 		"fonts",
 		"types",
 		"tauri",
-		"surah"
+		"surah",
+		"recitation"
 	]
 }

@@ -1,2 +1,2 @@
-export * from './ChaptersGrid';
 export * from './SelectionBar';
+export * from './SurahsGrid';
