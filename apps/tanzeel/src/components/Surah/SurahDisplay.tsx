@@ -5,6 +5,7 @@ import { useIntersection } from 'react-use';
 import { getAyahsPagination } from '../../utils/getAyahsPagination';
 import { getSurahByNumber } from '../../utils/getSurahByNumber';
 import { Ayah, Lafz, SurahInfo } from '../../utils/types';
+import { AyahPlayer } from '../AyahPlayer';
 import { FontChanger } from './Font/FontChanger';
 import { AyahDisplay } from './QuranLafz/AyahDisplay';
 
@@ -87,13 +88,14 @@ export const SurahDisplay = (): JSX.Element => {
 	}
 
 	return (
-		<VStack alignItems='center' justify='center' width='full' p={5}>
+		<VStack alignItems='center' justify='center' width='full'>
 			<FontChanger />
 			{surah && <Text fontSize='xxx-large' fontFamily='surahnames'>{surah.surahInfo.nameArabic}</Text>}
 
 			{lafzs.length > 0 && <AyahDisplay ayahs={lafzs} surahNumber={surah.surahInfo.id as number} />}
 
 			{currentStartingVerse < endingVerse && <p ref={intersectionRef}>Loading...</p>}
+			<AyahPlayer />
 		</VStack>
 	);
 };

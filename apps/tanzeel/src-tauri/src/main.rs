@@ -6,7 +6,7 @@
 use std::io::BufReader;
 
 #[tauri::command]
-fn play_recitation(surah_number: i32, ayah_number: i32, reciter: String) {
+async fn play_recitation(surah_number: i32, ayah_number: i32, reciter: String) {
     // get the current running directory
     let current_dir = std::env::current_dir().unwrap();
     // move the directory inside data/recitation

@@ -45,6 +45,7 @@
 		"types",
 		"tauri",
 		"surah",
-		"recitation"
+		"recitation",
+		"ayah-player"
 	]
 }
