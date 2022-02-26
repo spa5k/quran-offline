@@ -27,10 +27,8 @@ async fn play_recitation(surah_number: i32, ayah_number: i32, reciter: String) {
     sink.append(rodio::Decoder::new(BufReader::new(file)).unwrap());
 
     sink.sleep_until_end();
-    println!(
-        "playRecitation surah_number: {}, ayah_number: {}",
-        surah_number, ayah_number
-    )
+    println!("playing recitation of - surah_number: {surah_number}, ayah_number: {ayah_number}")
+        
 }
 
 fn main() {

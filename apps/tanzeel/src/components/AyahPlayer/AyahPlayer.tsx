@@ -1,5 +1,7 @@
-import { Box, Flex, HStack, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, HStack, IconButton, Text, useColorModeValue } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
+import IconPause from '~icons/carbon/pause';
+import { default as IconPlay } from '~icons/carbon/play';
 import { ayahPlayerAtom } from '../../state/ayahPlayerAtom';
 
 export const AyahPlayer = (): JSX.Element => {
@@ -27,6 +29,8 @@ export const AyahPlayer = (): JSX.Element => {
 				maxW='2xl'
 			>
 				<HStack>
+					<IconButton children={ayahStatus.isPlaying ? <IconPause /> : <IconPlay />} aria-label='nice' />
+
 					<Text userSelect='none'>
 						Current Ayah - {ayahStatus.currentAyah}
 					</Text>

@@ -1,4 +1,4 @@
-import { Text, VStack } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { MakeGenerics, useMatch } from 'react-location';
 import { useIntersection } from 'react-use';
@@ -88,7 +88,7 @@ export const SurahDisplay = (): JSX.Element => {
 	}
 
 	return (
-		<VStack alignItems='center' justify='center' width='full'>
+		<Flex flexDir='column' alignItems='center' width='full' height='full' minH='full' justifyContent='space-between'>
 			<FontChanger />
 			{surah && <Text fontSize='xxx-large' fontFamily='surahnames'>{surah.surahInfo.nameArabic}</Text>}
 
@@ -96,6 +96,6 @@ export const SurahDisplay = (): JSX.Element => {
 
 			{currentStartingVerse < endingVerse && <p ref={intersectionRef}>Loading...</p>}
 			<AyahPlayer />
-		</VStack>
+		</Flex>
 	);
 };

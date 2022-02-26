@@ -14,6 +14,7 @@ export const AyahContainer = React.memo(({ lafz, ayahNumber, surahNumber }: { la
 	const playAudio = async (): Promise<void> => {
 		setAyahStatus({ currentAyah: ayahNumber, currentSurah: surahNumber, isPlaying: true, lastAyah: ayahNumber - 1 > 0 ? ayahNumber - 1 : 1 });
 		await playOneAyah(surahNumber, ayahNumber);
+		setAyahStatus({ currentAyah: ayahNumber, currentSurah: surahNumber, isPlaying: false, lastAyah: ayahNumber - 1 > 0 ? ayahNumber - 1 : 1 });
 	};
 
 	return (
