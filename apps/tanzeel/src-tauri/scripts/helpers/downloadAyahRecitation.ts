@@ -6,7 +6,7 @@ import { ayahCount } from '../recitations';
 interface downloadAyahRecitationProps {
 	reciter: string;
 }
-export const downloadAyahRecitation = async ({ reciter }: downloadAyahRecitationProps) => {
+export const downloadAyahRecitation = async ({ reciter }: downloadAyahRecitationProps): Promise<void> => {
 	const baseUrl = 'https://www.everyayah.com/data';
 	if (!reciter) {
 		reciter = 'Abdul_Basit_Mujawwad_128kbps';
