@@ -10,9 +10,9 @@ export const LafzDisplay = ({ lafz }: { lafz: Lafz; }): JSX.Element => {
 	return (
 		<WrapItem flexDir='column' alignItems='center'>
 			{lafz.charTypeName === 'end'
-				&& <Text fontFamily='UthmanicHafs' fontSize='xxx-large'>{lafz.textUthmani}</Text>}
+				&& <Text fontFamily='UthmanicHafs' fontSize='xxx-large' userSelect='none'>{lafz.textUthmani}</Text>}
 			{lafz.charTypeName === 'word' && (
-				<Text fontSize='xxx-large' fontFamily={`${font}`} sx={{ unicodeBidi: 'bidi-override' }}>
+				<Text fontSize='xxx-large' fontFamily={font} sx={{ unicodeBidi: 'bidi-override' }} userSelect='none'>
 					{font === TypesofFonts.Uthmani && lafz.textUthmani}
 					{font === TypesofFonts.IndoPak && lafz.textIndopak}
 				</Text>
