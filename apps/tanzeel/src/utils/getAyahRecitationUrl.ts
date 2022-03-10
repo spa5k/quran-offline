@@ -1,11 +1,15 @@
-import { fs, invoke } from '@tauri-apps/api';
-import { BaseDirectory } from '@tauri-apps/api/fs';
+import { join, resourceDir } from '@tauri-apps/api/path';
+import { convertFileSrc } from '@tauri-apps/api/tauri';
 
 export const getAyahRecitationUrl = async (surahNumber: number, ayahNumber: number, reciter = 'Abdul_Basit_Murattal_64kbps.mp3'): Promise<string> => {
-	const ayahFile = await fs.readDir(`data/recitation/${surahNumber}/${ayahNumber}`, { dir: BaseDirectory.Resource });
+	const resourceDirPath = await resourceDir();
 
-	console.log('here');
-	await invoke('play_recitation', { surahNumber, ayahNumber, reciter });
+	// if first 4 letters of resourceDirPath are "\\?\", remove it
+	const resourceDirPathWithoutPrefix = resourceDirPath.replace(/^\\\\\?\\/, '');
 
-	return ayahFile[0].path;
+	const allowedPath = convertFileSrc(
+		await join(resourceDirPathWithoutPrefix, 'data', 'recitation', surahNumber.toString(), ayahNumber.toString(), 'Abdul_Basit_Murattal_64kbps.mp3'),
+	);
+
+	return allowedPath;
 };
