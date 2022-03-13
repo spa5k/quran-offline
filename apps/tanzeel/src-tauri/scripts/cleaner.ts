@@ -5,7 +5,7 @@ import fs from 'fs-extra';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 
-type SurahDetail = {
+interface SurahDetail {
 	id: number;
 	revelation_place: string;
 	revelation_order: number;
@@ -16,26 +16,26 @@ type SurahDetail = {
 	verses_count: number;
 	pages: number[];
 	translated_name: TranslatedName;
-};
+}
 
-type SurahInfo = {
+interface SurahInfo {
 	id: number;
 	chapter_id: number;
 	language_name: string;
 	short_text: string;
 	source: string;
 	text: string;
-};
+}
 
-type TranslatedName = {
+interface TranslatedName {
 	language_name: LanguageName;
 	name: string;
-};
+}
 
 enum LanguageName {
 	English = 'english',
 }
-type CombinedSurah = {
+interface CombinedSurah {
 	id: number;
 	chapterId: number;
 	shortText: string;
@@ -49,9 +49,9 @@ type CombinedSurah = {
 	nameArabic: string;
 	versesCount: number;
 	translatedName: string;
-};
+}
 
-type AyahTypeNoWords = {
+interface AyahTypeNoWords {
 	id: number;
 	verseNumber: number;
 	verseKey: string;
@@ -70,13 +70,13 @@ type AyahTypeNoWords = {
 	startingVerse: number;
 	endingVerse: number;
 	totalVerses: number;
-};
+}
 
 export enum RevelationPlace {
 	Madinah = 'madinah',
 	Makkah = 'makkah',
 }
-export type SingleAyah = {
+export interface SingleAyah {
 	id?: number;
 	position?: number;
 	audioURL?: null | string;
@@ -90,12 +90,12 @@ export type SingleAyah = {
 	text?: string;
 	translation?: Translation;
 	transliteration?: Translation;
-};
+}
 
-export type Translation = {
+export interface Translation {
 	text?: null | string;
 	languageName?: LanguageName;
-};
+}
 
 const additionalInfoSurahList = async ({ lang }: { lang: string; }): Promise<void> => {
 	const finalized = [];
@@ -203,10 +203,10 @@ const separateSurahVerses = async ({ lang, chapterNumber }: { lang: string; chap
 };
 
 const main = async (): Promise<void> => {
-	type Task = {
+	interface Task {
 		chapterNumber: number;
 		lang: string;
-	};
+	}
 
 	const q: queueAsPromised<Task> = fastq.promise(asyncWorker, 2);
 	for (let index: number = 1; index <= 114; index++) {

@@ -1,12 +1,49 @@
 import { Box, Flex, HStack, IconButton, Text, useColorModeValue } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
-import IconPause from '~icons/carbon/pause';
+import { useEffect, useState } from 'react';
+import { useAudio } from 'react-use';
+import { default as IconPause } from '~icons/carbon/pause';
 import { default as IconPlay } from '~icons/carbon/play';
-import { ayahPlayerAtom } from '../../state/ayahPlayerAtom';
+import { currentlyPlayingRecitationUrlsAtom } from '../../state/currentlyPlayingRecitationAtom';
+import { isPlayingAtom } from '../../state/isPlayingAtom';
+import { recitationQueue } from '../../state/recitationQueue';
+import { recitationUrlsAtom } from '../../state/recitationUrlsAtom';
 
 export const AyahPlayer = (): JSX.Element => {
-	const [ayahStatus] = useAtom(ayahPlayerAtom);
-	console.log('ayah', ayahStatus);
+	const [currentRecitation] = useAtom(currentlyPlayingRecitationUrlsAtom);
+	const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom);
+	const [recitationUrls, setRecitationUrls] = useAtom(recitationUrlsAtom);
+	const [recitationUrl, setRecitationUrl] = useState<string>('');
+
+	useEffect(() => {
+		console.log('bruh');
+		setRecitationUrl(recitationUrls[currentRecitation.currentAyah - 1]);
+		recitationQueue.empty();
+		const queueHander = async () => {
+			// get remaining recitationUrls from currentAyah to end of surah
+			const remainingRecitationUrls = recitationUrls.slice(currentRecitation.currentAyah - 1);
+			console.log(remainingRecitationUrls);
+			// add remaining recitationUrls to recitationQueue
+			remainingRecitationUrls.forEach((url) => recitationQueue.push({ recitationUrl: url }));
+		};
+		queueHander().catch((err) => console.log(err));
+	}, [currentRecitation.currentAyah]);
+
+	const [audio, state, controls, ref] = useAudio({
+		src: recitationUrl,
+		autoPlay: isPlaying,
+	});
+
+	console.log(audio);
+
+	useEffect(() => {
+		const playRecitation = async () => {
+			if (isPlaying) {
+				await controls.play();
+			}
+		};
+		playRecitation().catch(console.error);
+	}, [isPlaying]);
 
 	return (
 		<Flex
@@ -29,13 +66,14 @@ export const AyahPlayer = (): JSX.Element => {
 				maxW='2xl'
 			>
 				<HStack>
-					<IconButton children={ayahStatus.isPlaying ? <IconPause /> : <IconPlay />} aria-label='nice' />
+					{audio}
+					<IconButton children={isPlaying ? <IconPlay /> : <IconPause />} aria-label='play' onClick={() => setIsPlaying(!isPlaying)} />
 
 					<Text userSelect='none'>
-						Current Ayah - {ayahStatus.currentAyah}
+						Current Ayah - {currentRecitation.currentAyah}
 					</Text>
 					<Text userSelect='none'>
-						Current Surah - {ayahStatus.currentSurah}
+						Current Surah - {currentRecitation.currentSurah}
 					</Text>
 				</HStack>
 			</Box>
