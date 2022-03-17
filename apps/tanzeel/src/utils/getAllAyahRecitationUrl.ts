@@ -1,8 +1,12 @@
 import { join, resourceDir } from '@tauri-apps/api/path';
 import { convertFileSrc } from '@tauri-apps/api/tauri';
+import { ayahCountList } from './ayahCount';
 
-export const getAllAyahsRecitationUrl = async (surahNumber: number, ayahCount: number, reciter = 'Abdul_Basit_Murattal_64kbps.mp3'): Promise<string[]> => {
+export const getAllAyahsRecitationUrl = async (surahNumber: number, reciter = 'Abdul_Basit_Murattal_64kbps.mp3'): Promise<string[]> => {
 	const resourceDirPath = await resourceDir();
+	// get Ayah Count for the specific surah
+	const ayahCount = ayahCountList[surahNumber - 1];
+
 	const urls: string[] = [];
 	// if first 4 letters of resourceDirPath are "\\?\", remove it
 	const resourceDirPathWithoutPrefix = resourceDirPath.replace(/^\\\\\?\\/, '');

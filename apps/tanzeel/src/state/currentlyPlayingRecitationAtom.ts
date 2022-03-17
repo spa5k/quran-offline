@@ -5,7 +5,7 @@ interface CurrentlyPlayingRecitationAtom {
 	currentSurah: number;
 }
 
-export const currentlyPlayingRecitationUrlsAtom = atomWithStorage<CurrentlyPlayingRecitationAtom>('isPlaying', {
+export const currentRecitationAtom = atomWithStorage<CurrentlyPlayingRecitationAtom>('isPlaying', {
 	currentAyah: 0,
 	currentSurah: 0,
 });

@@ -1,49 +1,54 @@
 import { Box, Flex, HStack, IconButton, Text, useColorModeValue } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
-import { useEffect, useState } from 'react';
-import { useAudio } from 'react-use';
+import { useEffect } from 'react';
 import { default as IconPause } from '~icons/carbon/pause';
 import { default as IconPlay } from '~icons/carbon/play';
-import { currentlyPlayingRecitationUrlsAtom } from '../../state/currentlyPlayingRecitationAtom';
+import { currentRecitationAtom } from '../../state/currentlyPlayingRecitationAtom';
 import { isPlayingAtom } from '../../state/isPlayingAtom';
-import { recitationQueue } from '../../state/recitationQueue';
+import { pendingRecitationsAtom } from '../../state/pendingRecitationsAtom';
 import { recitationUrlsAtom } from '../../state/recitationUrlsAtom';
+import { getAllAyahsRecitationUrl } from '../../utils/getAllAyahRecitationUrl';
+import { useMultipleAudioHook } from '../../utils/useMultipleAudioHook';
 
 export const AyahPlayer = (): JSX.Element => {
-	const [currentRecitation] = useAtom(currentlyPlayingRecitationUrlsAtom);
+	const [currentRecitation, setCurrentRecitation] = useAtom(currentRecitationAtom);
 	const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom);
 	const [recitationUrls, setRecitationUrls] = useAtom(recitationUrlsAtom);
-	const [recitationUrl, setRecitationUrl] = useState<string>('');
+	const [pendingRecitation, setPendingRecitations] = useAtom(pendingRecitationsAtom);
+
+	// get all the recitationUrls for this surah // use useEffect
 
 	useEffect(() => {
-		console.log('bruh');
-		setRecitationUrl(recitationUrls[currentRecitation.currentAyah - 1]);
-		recitationQueue.empty();
-		const queueHander = async () => {
-			// get remaining recitationUrls from currentAyah to end of surah
-			const remainingRecitationUrls = recitationUrls.slice(currentRecitation.currentAyah - 1);
-			console.log(remainingRecitationUrls);
-			// add remaining recitationUrls to recitationQueue
-			remainingRecitationUrls.forEach((url) => recitationQueue.push({ recitationUrl: url }));
+		const gettingUrls = async (): Promise<void> => {
+			const getAllRecitationUrls = async (): Promise<void> => {
+				const urls = await getAllAyahsRecitationUrl(currentRecitation.currentSurah);
+				setRecitationUrls(urls);
+			};
+
+			await getAllRecitationUrls();
 		};
-		queueHander().catch((err) => console.log(err));
+		gettingUrls().catch((err) => console.log(err));
 	}, [currentRecitation.currentAyah]);
 
-	const [audio, state, controls, ref] = useAudio({
-		src: recitationUrl,
-		autoPlay: isPlaying,
-	});
+	// extract pending recitationUrls from recitationUrls and set pendingRecitation
+	useEffect(() => {
+		const extractPendingRecitation = (): void => {
+			// copy recitationUrls to a new array
+			const newRecitationUrls = [...recitationUrls];
+			// use ayahNumber as index and remove all urls that have index lesser than equal to currentAyah
+			newRecitationUrls.splice(0, currentRecitation.currentAyah - 1);
+			setPendingRecitations(newRecitationUrls);
+		};
+		extractPendingRecitation();
+	}, [recitationUrls]);
 
-	console.log(audio);
+	const { isPlaying: isPlaying2, pause, play, toggle } = useMultipleAudioHook(recitationUrls[currentRecitation.currentAyah - 1]);
 
 	useEffect(() => {
-		const playRecitation = async () => {
-			if (isPlaying) {
-				await controls.play();
-			}
+		return () => {
+			play();
 		};
-		playRecitation().catch(console.error);
-	}, [isPlaying]);
+	}, [currentRecitation.currentAyah]);
 
 	return (
 		<Flex
@@ -66,9 +71,35 @@ export const AyahPlayer = (): JSX.Element => {
 				maxW='2xl'
 			>
 				<HStack>
-					{audio}
-					<IconButton children={isPlaying ? <IconPlay /> : <IconPause />} aria-label='play' onClick={() => setIsPlaying(!isPlaying)} />
+					<IconButton
+						children={<IconPause />}
+						aria-label='pause'
+						onClick={() => {
+							toggle();
+						}}
+					/>
 
+					{isPlaying2
+						? (
+							<IconButton
+								children={<IconPause />}
+								aria-label='pause'
+								onClick={() => {
+									pause();
+								}}
+							/>
+						)
+						: (
+							<IconButton
+								children={<IconPlay />}
+								aria-label='play'
+								onClick={() => {
+									play();
+								}}
+							/>
+						)}
+
+					{/* {audio} */}
 					<Text userSelect='none'>
 						Current Ayah - {currentRecitation.currentAyah}
 					</Text>
