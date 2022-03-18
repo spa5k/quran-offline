@@ -13,16 +13,18 @@ import {
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import React from 'react';
-import { currentRecitationAtom } from '../../../state/currentlyPlayingRecitationAtom';
+import { currentAyahAtom, currentSurahAtom } from '../../../state/currentlyPlayingRecitationAtom';
 import { Lafz } from '../../../utils/types';
 import { LafzDisplay } from './LafzDisplay';
 
 export const AyahContainer = React.memo(({ lafz, ayahNumber, surahNumber }: { lafz: Lafz[]; ayahNumber: number; surahNumber: number; }): JSX.Element => {
-	const [, setCurrentRecitation] = useAtom(currentRecitationAtom);
 	const { colorMode } = useColorMode();
+	const [, setCurrentAyah] = useAtom(currentAyahAtom);
+	const [, setCurrentSurah] = useAtom(currentSurahAtom);
 
 	const updateCurrentRecitation = (): void => {
-		setCurrentRecitation({ currentAyah: ayahNumber, currentSurah: surahNumber });
+		setCurrentAyah(ayahNumber);
+		setCurrentSurah(surahNumber);
 	};
 	return (
 		<Popover>

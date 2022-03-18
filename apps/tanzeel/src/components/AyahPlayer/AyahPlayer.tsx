@@ -1,54 +1,43 @@
 import { Box, Flex, HStack, IconButton, Text, useColorModeValue } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+import { useAudio } from 'react-awesome-audio';
 import { default as IconPause } from '~icons/carbon/pause';
 import { default as IconPlay } from '~icons/carbon/play';
-import { currentRecitationAtom } from '../../state/currentlyPlayingRecitationAtom';
-import { isPlayingAtom } from '../../state/isPlayingAtom';
-import { pendingRecitationsAtom } from '../../state/pendingRecitationsAtom';
+import { currentAyahAtom, currentSurahAtom } from '../../state/currentlyPlayingRecitationAtom';
 import { recitationUrlsAtom } from '../../state/recitationUrlsAtom';
 import { getAllAyahsRecitationUrl } from '../../utils/getAllAyahRecitationUrl';
-import { useMultipleAudioHook } from '../../utils/useMultipleAudioHook';
 
 export const AyahPlayer = (): JSX.Element => {
-	const [currentRecitation, setCurrentRecitation] = useAtom(currentRecitationAtom);
-	const [isPlaying, setIsPlaying] = useAtom(isPlayingAtom);
 	const [recitationUrls, setRecitationUrls] = useAtom(recitationUrlsAtom);
-	const [pendingRecitation, setPendingRecitations] = useAtom(pendingRecitationsAtom);
-
-	// get all the recitationUrls for this surah // use useEffect
+	const [currentAyah, setCurrentAyah] = useAtom(currentAyahAtom);
+	const [currentSurah, setCurrentSurah] = useAtom(currentSurahAtom);
 
 	useEffect(() => {
 		const gettingUrls = async (): Promise<void> => {
 			const getAllRecitationUrls = async (): Promise<void> => {
-				const urls = await getAllAyahsRecitationUrl(currentRecitation.currentSurah);
+				const urls = await getAllAyahsRecitationUrl(currentSurah);
 				setRecitationUrls(urls);
 			};
 
 			await getAllRecitationUrls();
 		};
 		gettingUrls().catch((err) => console.log(err));
-	}, [currentRecitation.currentAyah]);
+	}, [currentSurah]);
 
-	// extract pending recitationUrls from recitationUrls and set pendingRecitation
+	const { isPlaying, play, toggle } = useAudio({
+		src: recitationUrls[currentAyah - 1],
+		onEnded: () => {
+			setCurrentAyah(currentAyah + 1);
+		},
+	});
+
+	// whenever currentRecitation.currentAyah changes, play again
 	useEffect(() => {
-		const extractPendingRecitation = (): void => {
-			// copy recitationUrls to a new array
-			const newRecitationUrls = [...recitationUrls];
-			// use ayahNumber as index and remove all urls that have index lesser than equal to currentAyah
-			newRecitationUrls.splice(0, currentRecitation.currentAyah - 1);
-			setPendingRecitations(newRecitationUrls);
-		};
-		extractPendingRecitation();
-	}, [recitationUrls]);
-
-	const { isPlaying: isPlaying2, pause, play, toggle } = useMultipleAudioHook(recitationUrls[currentRecitation.currentAyah - 1]);
-
-	useEffect(() => {
-		return () => {
+		if (isPlaying) {
 			play();
-		};
-	}, [currentRecitation.currentAyah]);
+		}
+	}, [currentAyah]);
 
 	return (
 		<Flex
@@ -72,39 +61,37 @@ export const AyahPlayer = (): JSX.Element => {
 			>
 				<HStack>
 					<IconButton
-						children={<IconPause />}
+						children={isPlaying
+							? <IconPause />
+							: <IconPlay />}
 						aria-label='pause'
-						onClick={() => {
-							toggle();
-						}}
+						onClick={toggle}
 					/>
 
-					{isPlaying2
+					{
+						/* {isPlaying
 						? (
 							<IconButton
 								children={<IconPause />}
 								aria-label='pause'
-								onClick={() => {
-									pause();
-								}}
+								onClick={pause}
 							/>
 						)
 						: (
 							<IconButton
 								children={<IconPlay />}
 								aria-label='play'
-								onClick={() => {
-									play();
-								}}
+								onClick={play}
 							/>
-						)}
+						)} */
+					}
 
 					{/* {audio} */}
 					<Text userSelect='none'>
-						Current Ayah - {currentRecitation.currentAyah}
+						Current Ayah - {currentAyah}
 					</Text>
 					<Text userSelect='none'>
-						Current Surah - {currentRecitation.currentSurah}
+						Current Surah - {currentSurah}
 					</Text>
 				</HStack>
 			</Box>
