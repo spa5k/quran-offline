@@ -1,13 +1,11 @@
 import { Flex, Text } from '@chakra-ui/react';
+import { AyahDisplay, AyahPlayer, FontChanger } from '@components';
+import { recitationUrlsAtom } from '@state';
+import { Ayah, ayahCountList, getAllAyahsRecitationUrl, getAyahsPagination, getSurahByNumber, Lafz, SurahInfo } from '@utils';
 import { useAtom } from 'jotai';
 import React, { useEffect, useState } from 'react';
 import { MakeGenerics, useMatch } from 'react-location';
 import { useIntersection } from 'react-use';
-import { recitationUrlsAtom } from '../../state';
-import { Ayah, ayahCountList, getAllAyahsRecitationUrl, getAyahsPagination, getSurahByNumber, Lafz, SurahInfo } from '../../utils';
-import { AyahPlayer } from '../AyahPlayer';
-import { FontChanger } from './Font/FontChanger';
-import { AyahDisplay } from './QuranLafz/AyahDisplay';
 
 type LocationGenerics = MakeGenerics<{
 	LoaderData: {

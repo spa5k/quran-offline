@@ -1,8 +1,6 @@
 import { Flex, HStack, VStack } from '@chakra-ui/react';
+import { LeftSection, MiddleSection, NavBar, RightSection, SurahDisplay } from '@components';
 import { DefaultGenerics, Outlet, ReactLocation, Router } from 'react-location';
-import { NavBar } from '../Navbar';
-import { SurahDisplay } from '../Surah';
-import { LeftSection, MiddleSection, RightSection } from '.';
 
 export const MainLayout = (): JSX.Element => {
 	const location: ReactLocation<DefaultGenerics> = new ReactLocation();

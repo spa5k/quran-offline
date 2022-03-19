@@ -1,11 +1,11 @@
 import { Box, Flex, HStack, IconButton, Text, useColorModeValue } from '@chakra-ui/react';
+import { currentAyahAtom, currentSurahAtom, isCurrentAyahPlayedAtom, recitationUrlsAtom } from '@state';
+import { ayahCountList, getAllAyahsRecitationUrl } from '@utils';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
 import { useAudio } from 'react-awesome-audio';
 import { default as IconPause } from '~icons/carbon/pause';
 import { default as IconPlay } from '~icons/carbon/play';
-import { currentAyahAtom, currentSurahAtom, isCurrentAyahPlayedAtom, recitationUrlsAtom } from '../../state';
-import { ayahCountList, getAllAyahsRecitationUrl } from '../../utils';
 
 export const AyahPlayer = (): JSX.Element => {
 	const [recitationUrls, setRecitationUrls] = useAtom(recitationUrlsAtom);

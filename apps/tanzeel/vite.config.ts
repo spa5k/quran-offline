@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react';
 import { promises as fs } from 'fs';
+import path from 'path';
 import AutoImport from 'unplugin-auto-import/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 import Icons from 'unplugin-icons/vite';
@@ -236,4 +237,12 @@ export default defineConfig({
 			emitCss: false,
 		}),
 	],
+	resolve: {
+		alias: {
+			'@': path.resolve(__dirname, './src'),
+			'@state': path.resolve(__dirname, './src/state'),
+			'@utils': path.resolve(__dirname, './src/utils'),
+			'@components': path.resolve(__dirname, './src/components'),
+		},
+	},
 });

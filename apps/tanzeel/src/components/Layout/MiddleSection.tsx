@@ -1,5 +1,5 @@
 import { Flex, VStack } from '@chakra-ui/react';
-import { SelectionBar, SurahsGrid } from '../Middle';
+import { SelectionBar, SurahsGrid } from '@components';
 
 export const MiddleSection = (): JSX.Element => (
 	<Flex height='100%'>
