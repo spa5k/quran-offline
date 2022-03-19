@@ -1,12 +1,51 @@
 import { Box, Flex, HStack, IconButton, Text, useColorModeValue } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
-import IconPause from '~icons/carbon/pause';
+import { useEffect } from 'react';
+import { useAudio } from 'react-awesome-audio';
+import { default as IconPause } from '~icons/carbon/pause';
 import { default as IconPlay } from '~icons/carbon/play';
-import { ayahPlayerAtom } from '../../state/ayahPlayerAtom';
+import { currentAyahAtom, currentSurahAtom, isCurrentAyahPlayedAtom } from '../../state/currentlyPlayingRecitationAtom';
+import { recitationUrlsAtom } from '../../state/recitationUrlsAtom';
+import { ayahCountList } from '../../utils/ayahCount';
+import { getAllAyahsRecitationUrl } from '../../utils/getAllAyahRecitationUrl';
 
 export const AyahPlayer = (): JSX.Element => {
-	const [ayahStatus] = useAtom(ayahPlayerAtom);
-	console.log('ayah', ayahStatus);
+	const [recitationUrls, setRecitationUrls] = useAtom(recitationUrlsAtom);
+	const [currentAyah, setCurrentAyah] = useAtom(currentAyahAtom);
+	const [isCurrentAyahPlayed, setIsCurrentAyahPlayed] = useAtom(isCurrentAyahPlayedAtom);
+
+	const [currentSurah] = useAtom(currentSurahAtom);
+
+	useEffect(() => {
+		const gettingUrls = async (): Promise<void> => {
+			const getAllRecitationUrls = async (): Promise<void> => {
+				const urls = await getAllAyahsRecitationUrl(currentSurah);
+				setRecitationUrls(urls);
+			};
+
+			await getAllRecitationUrls();
+		};
+		gettingUrls().catch((err) => console.log(err));
+	}, [currentSurah]);
+
+	const { isPlaying, play, toggle } = useAudio({
+		src: recitationUrls[currentAyah - 1],
+		onEnded: () => {
+			const totalAyahs = ayahCountList[currentSurah - 1];
+			if (currentAyah < totalAyahs) {
+				console.log(currentAyah);
+				setIsCurrentAyahPlayed(true);
+				setCurrentAyah(currentAyah + 1);
+			}
+		},
+	});
+
+	// whenever currentRecitation.currentAyah changes, play again
+	useEffect(() => {
+		if (!isCurrentAyahPlayed) {
+			play();
+		}
+	}, [currentAyah]);
 
 	return (
 		<Flex
@@ -29,13 +68,18 @@ export const AyahPlayer = (): JSX.Element => {
 				maxW='2xl'
 			>
 				<HStack>
-					<IconButton children={ayahStatus.isPlaying ? <IconPause /> : <IconPlay />} aria-label='nice' />
-
+					<IconButton
+						children={isPlaying
+							? <IconPause />
+							: <IconPlay />}
+						aria-label='pause'
+						onClick={toggle}
+					/>
 					<Text userSelect='none'>
-						Current Ayah - {ayahStatus.currentAyah}
+						Current Ayah - {currentAyah}
 					</Text>
 					<Text userSelect='none'>
-						Current Surah - {ayahStatus.currentSurah}
+						Current Surah - {currentSurah}
 					</Text>
 				</HStack>
 			</Box>

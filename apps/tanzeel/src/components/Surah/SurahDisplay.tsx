@@ -1,7 +1,11 @@
 import { Flex, Text } from '@chakra-ui/react';
+import { useAtom } from 'jotai';
 import React, { useEffect, useState } from 'react';
 import { MakeGenerics, useMatch } from 'react-location';
 import { useIntersection } from 'react-use';
+import { recitationUrlsAtom } from '../../state/recitationUrlsAtom';
+import { ayahCountList } from '../../utils/ayahCount';
+import { getAllAyahsRecitationUrl } from '../../utils/getAllAyahRecitationUrl';
 import { getAyahsPagination } from '../../utils/getAyahsPagination';
 import { getSurahByNumber } from '../../utils/getSurahByNumber';
 import { Ayah, Lafz, SurahInfo } from '../../utils/types';
@@ -41,6 +45,29 @@ export const SurahDisplay = (): JSX.Element => {
 	const [currentStartingVerse, setCurrentStartingVerse] = useState<number>();
 
 	const [loading, setLoading] = useState(true);
+	const [ayahCount, setAyahCount] = useState(0);
+
+	const [, setRecitationUrls] = useAtom(recitationUrlsAtom);
+
+	// get ayah count
+	useEffect(() => {
+		if (number) {
+			const currentAyahCount = ayahCountList[number - 1];
+
+			setAyahCount(currentAyahCount);
+		}
+	}, [number]);
+
+	// use ayahCount then use getAllAyahRecitationUrl to get the list of urls
+	useEffect(() => {
+		if (ayahCount && number) {
+			const ayahUrls = async (): Promise<void> => {
+				const urls = await getAllAyahsRecitationUrl(number);
+				setRecitationUrls(urls);
+			};
+			ayahUrls().catch(console.error);
+		}
+	}, [ayahCount]);
 
 	// update currentStartingVerse when startingVerse is defined
 	useEffect(() => {
