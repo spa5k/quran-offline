@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useAudio } from 'react-awesome-audio';
 import { default as IconPause } from '~icons/carbon/pause';
 import { default as IconPlay } from '~icons/carbon/play';
-import { currentAyahAtom, currentSurahAtom } from '../../state/currentlyPlayingRecitationAtom';
+import { currentAyahAtom, currentSurahAtom, isCurrentAyahPlayedAtom } from '../../state/currentlyPlayingRecitationAtom';
 import { recitationUrlsAtom } from '../../state/recitationUrlsAtom';
 import { ayahCountList } from '../../utils/ayahCount';
 import { getAllAyahsRecitationUrl } from '../../utils/getAllAyahRecitationUrl';
@@ -12,6 +12,8 @@ import { getAllAyahsRecitationUrl } from '../../utils/getAllAyahRecitationUrl';
 export const AyahPlayer = (): JSX.Element => {
 	const [recitationUrls, setRecitationUrls] = useAtom(recitationUrlsAtom);
 	const [currentAyah, setCurrentAyah] = useAtom(currentAyahAtom);
+	const [isCurrentAyahPlayed, setIsCurrentAyahPlayed] = useAtom(isCurrentAyahPlayedAtom);
+
 	const [currentSurah] = useAtom(currentSurahAtom);
 
 	useEffect(() => {
@@ -31,6 +33,8 @@ export const AyahPlayer = (): JSX.Element => {
 		onEnded: () => {
 			const totalAyahs = ayahCountList[currentSurah - 1];
 			if (currentAyah < totalAyahs) {
+				console.log(currentAyah);
+				setIsCurrentAyahPlayed(true);
 				setCurrentAyah(currentAyah + 1);
 			}
 		},
@@ -38,7 +42,9 @@ export const AyahPlayer = (): JSX.Element => {
 
 	// whenever currentRecitation.currentAyah changes, play again
 	useEffect(() => {
-		play();
+		if (!isCurrentAyahPlayed) {
+			play();
+		}
 	}, [currentAyah]);
 
 	return (
