@@ -1,7 +1,7 @@
 import { chakra, Text, WrapItem } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
-import { changeFontAtom } from '../../../state/changeFontAtom';
-import { Lafz } from '../../../utils/types';
+import { changeFontAtom } from '../../../state';
+import { Lafz } from '../../../utils';
 import { TypesofFonts } from '../Font/FontChanger';
 
 export const LafzDisplay = ({ lafz }: { lafz: Lafz; }): JSX.Element => {

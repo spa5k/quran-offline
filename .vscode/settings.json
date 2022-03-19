@@ -46,6 +46,7 @@
 		"tauri",
 		"surah",
 		"recitation",
-		"ayah-player"
+		"ayah-player",
+		"refactor"
 	]
 }

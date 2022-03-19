@@ -1,5 +1,5 @@
 import { VStack } from '@chakra-ui/react';
-import { LeftSidebar } from '../Sidebar/LeftSidebar';
+import { LeftSidebar } from '../Sidebar';
 
 export const LeftSection = (): JSX.Element => (
 	<VStack

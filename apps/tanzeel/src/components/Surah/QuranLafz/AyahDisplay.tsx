@@ -1,5 +1,5 @@
 import { Wrap } from '@chakra-ui/react';
-import { Lafz } from '../../../utils/types';
+import { Lafz } from '../../../utils';
 import { AyahContainer } from './AyahContainer';
 
 export const AyahDisplay = ({ ayahs, surahNumber }: { ayahs: Lafz[][]; surahNumber: number; }): JSX.Element => (

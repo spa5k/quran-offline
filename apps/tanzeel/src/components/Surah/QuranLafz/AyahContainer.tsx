@@ -13,8 +13,8 @@ import {
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import React from 'react';
-import { currentAyahAtom, currentSurahAtom } from '../../../state/currentlyPlayingRecitationAtom';
-import { Lafz } from '../../../utils/types';
+import { currentAyahAtom, currentSurahAtom } from '../../../state';
+import { Lafz } from '../../../utils';
 import { LafzDisplay } from './LafzDisplay';
 
 export const AyahContainer = React.memo(({ lafz, ayahNumber, surahNumber }: { lafz: Lafz[]; ayahNumber: number; surahNumber: number; }): JSX.Element => {

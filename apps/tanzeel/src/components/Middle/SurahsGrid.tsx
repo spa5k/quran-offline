@@ -1,7 +1,6 @@
 import { Wrap } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { getSurahList } from '../../utils/getSurahList';
-import { Surah } from '../../utils/types';
+import { getSurahList, Surah } from '../../utils';
 import { SurahBox } from '../Surah';
 
 export const SurahsGrid = (): JSX.Element => {

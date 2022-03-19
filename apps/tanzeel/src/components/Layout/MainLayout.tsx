@@ -1,7 +1,7 @@
 import { Flex, HStack, VStack } from '@chakra-ui/react';
 import { DefaultGenerics, Outlet, ReactLocation, Router } from 'react-location';
 import { NavBar } from '../Navbar';
-import { SurahDisplay } from '../Surah/SurahDisplay';
+import { SurahDisplay } from '../Surah';
 import { LeftSection, MiddleSection, RightSection } from '.';
 
 export const MainLayout = (): JSX.Element => {

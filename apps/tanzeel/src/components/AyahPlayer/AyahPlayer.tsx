@@ -4,10 +4,8 @@ import { useEffect } from 'react';
 import { useAudio } from 'react-awesome-audio';
 import { default as IconPause } from '~icons/carbon/pause';
 import { default as IconPlay } from '~icons/carbon/play';
-import { currentAyahAtom, currentSurahAtom, isCurrentAyahPlayedAtom } from '../../state/currentlyPlayingRecitationAtom';
-import { recitationUrlsAtom } from '../../state/recitationUrlsAtom';
-import { ayahCountList } from '../../utils/ayahCount';
-import { getAllAyahsRecitationUrl } from '../../utils/getAllAyahRecitationUrl';
+import { currentAyahAtom, currentSurahAtom, isCurrentAyahPlayedAtom, recitationUrlsAtom } from '../../state';
+import { ayahCountList, getAllAyahsRecitationUrl } from '../../utils';
 
 export const AyahPlayer = (): JSX.Element => {
 	const [recitationUrls, setRecitationUrls] = useAtom(recitationUrlsAtom);
