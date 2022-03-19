@@ -19,17 +19,23 @@ import { LafzDisplay } from './LafzDisplay';
 
 export const AyahContainer = React.memo(({ lafz, ayahNumber, surahNumber }: { lafz: Lafz[]; ayahNumber: number; surahNumber: number; }): JSX.Element => {
 	const { colorMode } = useColorMode();
-	const [, setCurrentAyah] = useAtom(currentAyahAtom);
+	const [currentAyah, setCurrentAyah] = useAtom(currentAyahAtom);
 	const [, setCurrentSurah] = useAtom(currentSurahAtom);
 
 	const updateCurrentRecitation = (): void => {
 		setCurrentAyah(ayahNumber);
 		setCurrentSurah(surahNumber);
 	};
+
+	const bgColor = colorMode === 'dark' ? 'quran.700' : 'brand.100';
 	return (
 		<Popover>
 			<PopoverTrigger>
-				<WrapItem sx={{ _hover: { background: colorMode === 'dark' ? 'quran.700' : 'brand.100' } }} p={2}>
+				<WrapItem
+					sx={{ _hover: { background: bgColor } }}
+					p={2}
+					bg={currentAyah === ayahNumber ? bgColor : 'none'}
+				>
 					<Wrap>
 						{lafz.map((letter) => <LafzDisplay lafz={letter} key={`${letter.id}-${letter.text}`} />)}
 					</Wrap>

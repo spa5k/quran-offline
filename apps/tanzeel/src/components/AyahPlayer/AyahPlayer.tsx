@@ -6,12 +6,13 @@ import { default as IconPause } from '~icons/carbon/pause';
 import { default as IconPlay } from '~icons/carbon/play';
 import { currentAyahAtom, currentSurahAtom } from '../../state/currentlyPlayingRecitationAtom';
 import { recitationUrlsAtom } from '../../state/recitationUrlsAtom';
+import { ayahCountList } from '../../utils/ayahCount';
 import { getAllAyahsRecitationUrl } from '../../utils/getAllAyahRecitationUrl';
 
 export const AyahPlayer = (): JSX.Element => {
 	const [recitationUrls, setRecitationUrls] = useAtom(recitationUrlsAtom);
 	const [currentAyah, setCurrentAyah] = useAtom(currentAyahAtom);
-	const [currentSurah, setCurrentSurah] = useAtom(currentSurahAtom);
+	const [currentSurah] = useAtom(currentSurahAtom);
 
 	useEffect(() => {
 		const gettingUrls = async (): Promise<void> => {
@@ -28,15 +29,16 @@ export const AyahPlayer = (): JSX.Element => {
 	const { isPlaying, play, toggle } = useAudio({
 		src: recitationUrls[currentAyah - 1],
 		onEnded: () => {
-			setCurrentAyah(currentAyah + 1);
+			const totalAyahs = ayahCountList[currentSurah - 1];
+			if (currentAyah < totalAyahs) {
+				setCurrentAyah(currentAyah + 1);
+			}
 		},
 	});
 
 	// whenever currentRecitation.currentAyah changes, play again
 	useEffect(() => {
-		if (isPlaying) {
-			play();
-		}
+		play();
 	}, [currentAyah]);
 
 	return (
@@ -67,26 +69,6 @@ export const AyahPlayer = (): JSX.Element => {
 						aria-label='pause'
 						onClick={toggle}
 					/>
-
-					{
-						/* {isPlaying
-						? (
-							<IconButton
-								children={<IconPause />}
-								aria-label='pause'
-								onClick={pause}
-							/>
-						)
-						: (
-							<IconButton
-								children={<IconPlay />}
-								aria-label='play'
-								onClick={play}
-							/>
-						)} */
-					}
-
-					{/* {audio} */}
 					<Text userSelect='none'>
 						Current Ayah - {currentAyah}
 					</Text>

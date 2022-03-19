@@ -47,7 +47,7 @@ export const SurahDisplay = (): JSX.Element => {
 	const [loading, setLoading] = useState(true);
 	const [ayahCount, setAyahCount] = useState(0);
 
-	const [recitationUrls, setRecitationUrls] = useAtom(recitationUrlsAtom);
+	const [, setRecitationUrls] = useAtom(recitationUrlsAtom);
 
 	// get ayah count
 	useEffect(() => {
@@ -62,7 +62,7 @@ export const SurahDisplay = (): JSX.Element => {
 	useEffect(() => {
 		if (ayahCount && number) {
 			const ayahUrls = async (): Promise<void> => {
-				const urls = await getAllAyahsRecitationUrl(number, ayahCount);
+				const urls = await getAllAyahsRecitationUrl(number);
 				setRecitationUrls(urls);
 			};
 			ayahUrls().catch(console.error);
