@@ -101,7 +101,7 @@ export const SurahDisplay = (): JSX.Element => {
 				setLafzs((lafzs) => [...lafzs, ...result]);
 			}
 		};
-		fetchLafz().catch((error) => console.error('file', error));
+		fetchLafz().catch((error) => console.error('error while fetching lafz', error));
 	}, [currentStartingVerse]);
 
 	if (!surah || !surah.ayahs || loading || !startingVerse || !endingVerse || !currentStartingVerse || !number) {

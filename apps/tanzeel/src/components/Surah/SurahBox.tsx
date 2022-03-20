@@ -13,10 +13,18 @@ export const SurahBox = (
 			px={4}
 			py={3}
 			bg={useColorModeValue('white', 'gray.800')}
-			shadow='lg'
-			rounded='md'
+			// shadow='md'
+			rounded='lg'
 			alignItems='flex-start'
+			sx={{
+				_hover: { boxShadow: '-10px -10px 30px #fff, 15px 15px 40px #CDD0D5' },
+				boxShadow: '-10px -10px 30px #fff, 10px 10px 30px #aeaec040',
+			}}
+			transition='all 0.4s'
 		>
+			box-shadow:
+
+			;
 			<Flex w='full' justifyContent='space-between' fontSize='xl' fontWeight='bold' mb={2}>
 				<Badge colorScheme='green' ml='1' fontSize='0.8em'># {id}</Badge>
 				<IconHeart color='quran.500' />

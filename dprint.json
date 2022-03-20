@@ -3,6 +3,7 @@
 	"lineWidth": 160,
 	"useTabs": true,
 	"indentWidth": 2,
+	"newLineKind": "crlf",
 	"typescript": {
 		"semiColons": "always",
 		"quoteStyle": "preferSingle"
