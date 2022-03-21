@@ -3,7 +3,6 @@ import { Lafz } from './types';
 
 export const getAyahsPagination = async (perPage: number, surahNumber: number, maxAyahs: number, currentStartingVerse: number): Promise<Lafz[][]> => {
 	const Ayah: Lafz[][] = [];
-	console.log(`Getting Ayahs from ${currentStartingVerse} to ${currentStartingVerse + perPage}`);
 
 	const numberOfAyahsToGet: number = maxAyahs % perPage;
 	for (let i: number = currentStartingVerse; i < currentStartingVerse + numberOfAyahsToGet; i++) {
