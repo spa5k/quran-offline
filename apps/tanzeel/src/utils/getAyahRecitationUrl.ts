@@ -10,6 +10,7 @@ export const getAyahRecitationUrl = async (surahNumber: number, ayahNumber: numb
 	const allowedPath = convertFileSrc(
 		await join(resourceDirPathWithoutPrefix, 'data', 'recitation', surahNumber.toString(), ayahNumber.toString(), 'Abdul_Basit_Murattal_64kbps.mp3'),
 	);
+	console.log('bruh');
 
 	return allowedPath;
 };

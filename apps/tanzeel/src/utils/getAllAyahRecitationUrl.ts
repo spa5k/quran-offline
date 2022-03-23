@@ -1,5 +1,5 @@
 import { join, resourceDir } from '@tauri-apps/api/path';
-import { convertFileSrc } from '@tauri-apps/api/tauri';
+import { convertFileSrc, invoke } from '@tauri-apps/api/tauri';
 import { ayahCountList } from './ayahCount';
 
 export const getAllAyahsRecitationUrl = async (surahNumber: number, reciter = 'Abdul_Basit_Murattal_64kbps.mp3'): Promise<string[]> => {
@@ -16,6 +16,10 @@ export const getAllAyahsRecitationUrl = async (surahNumber: number, reciter = 'A
 		);
 		urls.push(allowedPath);
 	}
-
+	try {
+		await invoke('my_custom_command');
+	} catch (err) {
+		console.log(err);
+	}
 	return urls;
 };
