@@ -78,9 +78,10 @@ CREATE TABLE IF NOT EXISTS `surah` (
 
 create table `translations` (
   `id` integer not null primary key autoincrement,
-  `author` TEXT null,
+  `translator` TEXT null,
   `title` TEXT null,
   `language` TEXT null default en,
+  `translation_id` TEXT NOT NULL,
   `created_at` datetime not null default CURRENT_TIMESTAMP,
   `updated_at` datetime not null default CURRENT_TIMESTAMP
 );
