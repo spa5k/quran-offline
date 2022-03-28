@@ -21,17 +21,6 @@
 -- Table structure for table `zh_jian`
 --
 
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Ma Jian', 'Ma Jian', 'Chinese','zh.jian');
-
-DROP TABLE IF EXISTS `zh_jian`;
-CREATE TABLE `zh_jian` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
-
 --
 -- Dumping data for table `zh_jian`
 --

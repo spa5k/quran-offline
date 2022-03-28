@@ -6,5 +6,4 @@ export * from './getSingleAyah';
 export * from './getSurahByNumber';
 export * from './getSurahInfo';
 export * from './getSurahList';
-export * from './playOneAyah';
 export * from './types';

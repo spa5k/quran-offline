@@ -23,17 +23,6 @@
 -- Table structure for table `ber_mensur`
 --
 
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Ramdane At Mansour', 'At Mensur', 'Amazigh','ber.mensur');
-
-DROP TABLE IF EXISTS `ber_mensur`;
-CREATE TABLE `ber_mensur` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
-
 
 --
 -- Dumping data for table `ber_mensur`

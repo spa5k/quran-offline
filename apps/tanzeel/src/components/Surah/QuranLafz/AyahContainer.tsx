@@ -13,14 +13,14 @@ import {
 } from '@chakra-ui/react';
 import { LafzDisplay } from '@components';
 import { currentAyahAtom, currentSurahAtom } from '@state';
-import { Lafz } from '@utils';
 import { useAtom } from 'jotai';
 import React from 'react';
+import { Ayah2 } from '../../../utils/typesV2';
 
-export const AyahContainer = React.memo(({ lafz, ayahNumber, surahNumber }: { lafz: Lafz[]; ayahNumber: number; surahNumber: number; }): JSX.Element => {
+export const AyahContainer = React.memo(({ lafz, ayahNumber, surahNumber }: { lafz: Ayah2; ayahNumber: number; surahNumber: number; }): JSX.Element => {
 	const { colorMode } = useColorMode();
 	const [currentAyah, setCurrentAyah] = useAtom(currentAyahAtom);
-	const [, setCurrentSurah] = useAtom(currentSurahAtom);
+	const [currentSurah, setCurrentSurah] = useAtom(currentSurahAtom);
 
 	const updateCurrentRecitation = (): void => {
 		setCurrentAyah(ayahNumber);
@@ -28,18 +28,18 @@ export const AyahContainer = React.memo(({ lafz, ayahNumber, surahNumber }: { la
 	};
 
 	const bgColor = colorMode === 'dark' ? 'quran.700' : 'quran.100';
-
 	return (
 		<Popover>
 			<PopoverTrigger>
 				<WrapItem
 					sx={{ _hover: { background: bgColor } }}
 					p={2}
-					bg={currentAyah === ayahNumber ? bgColor : 'none'}
+					bg={currentAyah === ayahNumber && currentSurah === surahNumber ? bgColor : 'none'}
 					transition='all 0.5s ease-in-out'
 				>
 					<Wrap>
-						{lafz.map((letter) => <LafzDisplay lafz={letter} key={`${letter.id}-${letter.text}`} />)}
+						<p>{lafz.number}</p>
+						<LafzDisplay lafz={lafz.text} />
 					</Wrap>
 				</WrapItem>
 			</PopoverTrigger>

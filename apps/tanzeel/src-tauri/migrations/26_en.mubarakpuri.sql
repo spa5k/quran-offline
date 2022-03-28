@@ -21,16 +21,6 @@
 --
 -- Table structure for table `en_mubarakpuri`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Safi-ur-Rahman al-Mubarakpuri', 'Mubarakpuri', 'English','en.mubarakpuri');
-
-DROP TABLE IF EXISTS `en_mubarakpuri`;
-CREATE TABLE `en_mubarakpuri` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 --
 -- Dumping data for table `en_mubarakpuri`

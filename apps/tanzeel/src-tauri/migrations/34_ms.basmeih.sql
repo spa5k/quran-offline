@@ -19,16 +19,6 @@
 --
 -- Table structure for table `ms_basmeih`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Abdullah Muhammad Basmeih', 'Basmeih', 'Malay','ms.basmeih');
-
-DROP TABLE IF EXISTS `ms_basmeih`;
-CREATE TABLE `ms_basmeih` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 --
 -- Dumping data for table `ms_basmeih`

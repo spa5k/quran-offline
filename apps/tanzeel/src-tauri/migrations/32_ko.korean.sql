@@ -20,16 +20,6 @@
 --
 -- Table structure for table `ko_korean`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Unknown', 'Korean', 'Korean','ko.korean');
-
-DROP TABLE IF EXISTS `ko_korean`;
-CREATE TABLE `ko_korean` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 --
 -- Dumping data for table `ko_korean`

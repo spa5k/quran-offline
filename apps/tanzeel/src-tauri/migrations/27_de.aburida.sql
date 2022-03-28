@@ -19,16 +19,7 @@
 --
 -- Table structure for table `de_aburida`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Abu Rida Muhammad ibn Ahmad ibn Rassoul', 'Abu Rida', 'German','de.aburida');
 
-DROP TABLE IF EXISTS `de_aburida`;
-CREATE TABLE `de_aburida` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 --
 -- Dumping data for table `de_aburida`

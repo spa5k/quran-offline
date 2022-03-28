@@ -16,17 +16,6 @@
 -- # --------------------------------------------------------------------
 
 
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Hasan Efendi Nahi', 'Efendi Nahi', 'sq','sq.nahi');
-
-DROP TABLE IF EXISTS `sq_nahi`;
-CREATE TABLE `sq_nahi` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
-
 --
 -- Dumping data for table `sq_nahi`
 --

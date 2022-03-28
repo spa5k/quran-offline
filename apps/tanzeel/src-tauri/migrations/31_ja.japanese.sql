@@ -21,16 +21,6 @@
 --
 -- Table structure for table `ja_japanese`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Unknown', 'Japanese', 'Japanese','ja.japanese');
-
-DROP TABLE IF EXISTS `ja_japanese`;
-CREATE TABLE `ja_japanese` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 
 --

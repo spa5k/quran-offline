@@ -21,17 +21,6 @@
 --
 -- Table structure for table `dv_divehi`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Office of the President of Maldives', 'ދިވެހި', 'Divehi','dv.divehi');
-
-DROP TABLE IF EXISTS `dv_divehi`;
-CREATE TABLE `dv_divehi` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
-
 
 
 --

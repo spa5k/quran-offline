@@ -1,24 +1,23 @@
-import { BaseDirectory, readTextFile } from '@tauri-apps/api/fs';
+import { invoke } from '@tauri-apps/api';
 import { getSurahInfo } from './getSurahInfo';
-import { Ayah, SurahInfo } from './types';
+import { SurahInfo } from './types';
+import { Ayah2 } from './typesV2';
 
 export const getSurahByNumber = async (number: number): Promise<{
-	ayahs: Ayah;
 	surahInfo: SurahInfo;
-	startingVerse: number;
-	endingVerse: number;
+	ayahs: Ayah2[];
 }> => {
-	let response: string = '';
+	let ayahs: Ayah2[] = [];
 	try {
-		response = await readTextFile(`data/list/en-${number}.json`, { dir: BaseDirectory.Resource });
+		console.log('invoking get_all_ayahs');
+		const data: { ayah: Ayah2[]; } = await invoke('get_all_ayahs', { surahNumber: number });
+		ayahs = data.ayah as Ayah2[];
+		console.log(data);
 	} catch (err) {
-		console.log('err', err);
+		console.log(err);
 	}
-	const ayahs: Ayah = JSON.parse(response);
-	const startingVerse: number = ayahs.startingVerse;
-	const endingVerse: number = ayahs.endingVerse;
 
 	const surahInfo: SurahInfo = await getSurahInfo(number);
 
-	return { ayahs, surahInfo, startingVerse, endingVerse };
+	return { surahInfo, ayahs };
 };

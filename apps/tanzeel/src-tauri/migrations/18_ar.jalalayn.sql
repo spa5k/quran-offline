@@ -19,16 +19,7 @@
 --
 -- Table structure for table `ar_jalalayn`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Jalal ad-Din al-Mahalli and Jalal ad-Din as-Suyuti', 'تفسير الجلالين', 'Arabic','ar.jalalayn');
 
-DROP TABLE IF EXISTS `ar_jalalayn`;
-CREATE TABLE `ar_jalalayn` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 --
 -- Dumping data for table `ar_jalalayn`

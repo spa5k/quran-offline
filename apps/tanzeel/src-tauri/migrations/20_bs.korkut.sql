@@ -18,16 +18,7 @@
 --
 -- Table structure for table `bs_korkut`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Besim Korkut', 'Korkut', 'Bosnian','bs.korkut');
 
-DROP TABLE IF EXISTS `bs_korkut`;
-CREATE TABLE `bs_korkut` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 --
 -- Dumping data for table `bs_korkut`

@@ -18,16 +18,7 @@
 --
 -- Table structure for table `ps_abdulwali`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Abdulwali Khan', 'عبدالولي', 'Pashto','ps.abdulwali');
 
-DROP TABLE IF EXISTS `ps_abdulwali`;
-CREATE TABLE `ps_abdulwali` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 --
 -- Dumping data for table `ps_abdulwali`

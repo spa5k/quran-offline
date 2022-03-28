@@ -22,17 +22,6 @@
 -- Table structure for table `hi_farooq`
 --
 
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Muhammad Farooq Khan and Muhammad Ahmed', 'फ़ारूक़ ख़ान & अहमद', 'Hindi','hi.farooq');
-
-DROP TABLE IF EXISTS `hi_farooq`;
-CREATE TABLE `hi_farooq` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
-
 --
 -- Dumping data for table `hi_farooq`
 --

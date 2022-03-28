@@ -19,17 +19,6 @@
 --
 -- Table structure for table `fa_ansarian`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Hussain Ansarian', 'انصاریان', 'Persian','fa.ansarian');
-
-DROP TABLE IF EXISTS `fa_ansarian`;
-CREATE TABLE `fa_ansarian` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
-
 
 --
 -- Dumping data for table `fa_ansarian`

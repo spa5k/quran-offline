@@ -20,17 +20,6 @@
 -- Table structure for table `ml_abdulhameed`
 --
 
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Cheriyamundam Abdul Hameed and Kunhi Mohammed Parappoor', 'അബ്ദുല്‍ ഹമീദ് & പറപ്പൂര്‍', 'Malayalam','ml.abdulhameed');
-
-DROP TABLE IF EXISTS `ml_abdulhameed`;
-CREATE TABLE `ml_abdulhameed` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
-
 --
 -- Dumping data for table `ml_abdulhameed`
 --

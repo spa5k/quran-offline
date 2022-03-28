@@ -19,16 +19,7 @@
 --
 -- Table structure for table `en_ahmedali`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Ahmed Ali', 'Ahmed Ali', 'English','en.ahmedali');
 
-DROP TABLE IF EXISTS `en_ahmedali`;
-CREATE TABLE `en_ahmedali` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 --
 -- Dumping data for table `en_ahmedali`

@@ -21,16 +21,6 @@
 -- Table structure for table `hi_hindi`
 --
 
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Suhel Farooq Khan and Saifur Rahman Nadwi', 'फ़ारूक़ ख़ान & नदवी', 'Hindi','hi.hindi');
-
-DROP TABLE IF EXISTS `hi_hindi`;
-CREATE TABLE `hi_hindi` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 --
 -- Dumping data for table `hi_hindi`
 --

@@ -19,16 +19,7 @@
 --
 -- Table structure for table `pl_bielawskiego`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Józefa Bielawskiego', 'Bielawskiego', 'Polish','pl.bielawskiego');
 
-DROP TABLE IF EXISTS `pl_bielawskiego`;
-CREATE TABLE `pl_bielawskiego` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 --
 -- Dumping data for table `pl_bielawskiego`
 --

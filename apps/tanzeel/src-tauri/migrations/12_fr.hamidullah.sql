@@ -10,16 +10,6 @@
 -- #
 -- # --------------------------------------------------------------------
 
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Muhammad Hamidullah', 'Hamidullah', 'fr','fr.hamidullah');
-
-DROP TABLE IF EXISTS `fr_hamidullah`;
-CREATE TABLE `fr_hamidullah` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 --
 -- Dumping data for table `fr_hamidullah`

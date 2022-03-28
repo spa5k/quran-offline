@@ -49,7 +49,6 @@ CREATE TABLE IF NOT EXISTS `uthmani_minimal` (
   `text` TEXT NOT NULL
 );
 
-
 CREATE TABLE IF NOT EXISTS `ayah` (
   `id` integer not null primary key autoincrement,
   `surah` integer not null default 0,
@@ -75,13 +74,23 @@ CREATE TABLE IF NOT EXISTS `surah` (
   `place` text NOT NULL
 );
 
-
 create table `translations` (
   `id` integer not null primary key autoincrement,
   `translator` TEXT null,
   `title` TEXT null,
   `language` TEXT null default en,
   `translation_id` TEXT NOT NULL,
+  `table_name` TEXT NOT NULL,
   `created_at` datetime not null default CURRENT_TIMESTAMP,
   `updated_at` datetime not null default CURRENT_TIMESTAMP
 );
+
+
+create table `transliteration` (
+  `index` integer not null primary key autoincrement,
+  `surah` TEXT not null,
+  `ayah` TEXT not null,
+  `text` TEXT not null
+);
+
+

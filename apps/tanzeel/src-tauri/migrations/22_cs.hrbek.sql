@@ -18,16 +18,6 @@
 --
 -- Table structure for table `cs_hrbek`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Preklad I. Hrbek', 'Hrbek', 'Czech','cs.hrbek');
-
-DROP TABLE IF EXISTS `cs_hrbek`;
-CREATE TABLE `cs_hrbek` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 
 --

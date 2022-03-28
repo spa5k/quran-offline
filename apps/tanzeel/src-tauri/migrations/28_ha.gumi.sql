@@ -15,16 +15,6 @@
 -- #
 -- # --------------------------------------------------------------------
 
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Abubakar Mahmoud Gumi', 'Gumi', 'Hausa','ha.gumi');
-
-DROP TABLE IF EXISTS `ha_gumi`;
-CREATE TABLE `ha_gumi` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 
 --

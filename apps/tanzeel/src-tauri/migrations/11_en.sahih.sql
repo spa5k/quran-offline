@@ -3,17 +3,6 @@
 -- http://www.phpmyadmin.net
 
 -- Insert data into the translations table 
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Saheeh International', 'Saheeh International', 'en','en.sahih');
-
-DROP TABLE IF EXISTS `en_sahih`;
-CREATE TABLE `en_sahih` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
-
 
 --
 -- Dumping data for table `en_sahih`

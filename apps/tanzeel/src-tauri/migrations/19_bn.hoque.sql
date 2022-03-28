@@ -18,16 +18,6 @@
 --
 -- Table structure for table `bn_hoque`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Zohurul Hoque', 'জহুরুল হক', 'Bengali','bn.hoque');
-
-DROP TABLE IF EXISTS `bn_hoque`;
-CREATE TABLE `bn_hoque` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 
 --

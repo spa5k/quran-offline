@@ -19,16 +19,6 @@
 --
 -- Table structure for table `bg_theophanov`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Tzvetan Theophanov', 'Теофанов', 'Bulgarian','bg.theophanov');
-
-DROP TABLE IF EXISTS `bg_theophanov`;
-CREATE TABLE `bg_theophanov` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
 
 
 --

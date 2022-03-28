@@ -19,17 +19,6 @@
 --
 -- Table structure for table `ku_asan`
 --
-INSERT INTO `translations` (`translator`, `title`, `language`,`translation_id`) VALUES
-('Burhan Muhammad-Amin', 'ته‌فسیری ئاسان', 'Kurdish','ku.asan');
-
-DROP TABLE IF EXISTS `ku_asan`;
-CREATE TABLE `ku_asan` (
-  `index` integer not null primary key autoincrement,
-  `surah` int(3) NOT NULL default '0',
-  `ayah` int(3) NOT NULL default '0',
-  `text` text NOT NULL
-);
-
 
 --
 -- Dumping data for table `ku_asan`
