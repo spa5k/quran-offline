@@ -8,38 +8,38 @@ import IconHeadphone from '~icons/fluent/headphones-48-regular';
 import { SidebarContent } from './SidebarContentProps';
 
 interface LinkItemProps {
-	name: string;
-	icon: IconType;
+  name: string;
+  icon: IconType;
 }
 
 export const LinkItems: Array<LinkItemProps> = [
-	{ name: 'Quran', icon: IconBookOpen },
-	{ name: 'Bookmarks', icon: IconHeart },
-	{ name: 'Listen', icon: IconHeadphone },
-	{ name: 'Share', icon: IconShare },
-	{ name: 'Settings', icon: IconSettings },
+  { name: 'Quran', icon: IconBookOpen },
+  { name: 'Bookmarks', icon: IconHeart },
+  { name: 'Listen', icon: IconHeadphone },
+  { name: 'Share', icon: IconShare },
+  { name: 'Settings', icon: IconSettings },
 ];
 
 export const LeftSidebar = (): JSX.Element => {
-	const { isOpen, onClose } = useDisclosure();
+  const { isOpen, onClose } = useDisclosure();
 
-	return (
-		<Box>
-			<SidebarContent
-				onClose={() => onClose}
-			/>
-			<Drawer
-				autoFocus={false}
-				isOpen={isOpen}
-				placement='left'
-				onClose={onClose}
-				returnFocusOnClose={false}
-				onOverlayClick={onClose}
-			>
-				<DrawerContent>
-					<SidebarContent onClose={onClose} />
-				</DrawerContent>
-			</Drawer>
-		</Box>
-	);
+  return (
+    <Box>
+      <SidebarContent
+        onClose={() => onClose}
+      />
+      <Drawer
+        autoFocus={false}
+        isOpen={isOpen}
+        placement='left'
+        onClose={onClose}
+        returnFocusOnClose={false}
+        onOverlayClick={onClose}
+      >
+        <DrawerContent>
+          <SidebarContent onClose={onClose} />
+        </DrawerContent>
+      </Drawer>
+    </Box>
+  );
 };

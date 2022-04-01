@@ -1,4 +1,4 @@
 export interface Ayah2 {
-	number: number;
-	text: string;
+  number: number;
+  text: string;
 }

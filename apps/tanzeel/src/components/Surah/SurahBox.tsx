@@ -4,41 +4,41 @@ import { Link } from 'react-location';
 import IconHeart from '~icons/akar-icons/heart';
 
 export const SurahBox = (
-	{ nameArabic, nameSimple, translatedName, id }: Surah,
+  { nameArabic, nameSimple, translatedName, id }: Surah,
 ): JSX.Element => (
-	<WrapItem key={id}>
-		<VStack
-			w='650px'
-			height='150px'
-			px={4}
-			py={3}
-			bg={useColorModeValue('white', 'gray.800')}
-			// shadow='md'
-			rounded='lg'
-			alignItems='flex-start'
-			sx={{
-				_hover: { boxShadow: '-10px -10px 30px #fff, 15px 15px 40px #CDD0D5' },
-				boxShadow: '-10px -10px 30px #fff, 10px 10px 30px #aeaec040',
-			}}
-			transition='all 0.4s'
-		>
-			box-shadow:
+  <WrapItem key={id}>
+    <VStack
+      w='650px'
+      height='150px'
+      px={4}
+      py={3}
+      bg={useColorModeValue('white', 'gray.800')}
+      // shadow='md'
+      rounded='lg'
+      alignItems='flex-start'
+      sx={{
+        _hover: { boxShadow: '-10px -10px 30px #fff, 15px 15px 40px #CDD0D5' },
+        boxShadow: '-10px -10px 30px #fff, 10px 10px 30px #aeaec040',
+      }}
+      transition='all 0.4s'
+    >
+      box-shadow:
 
-			;
-			<Flex w='full' justifyContent='space-between' fontSize='xl' fontWeight='bold' mb={2}>
-				<Badge colorScheme='green' ml='1' fontSize='0.8em'># {id}</Badge>
-				<IconHeart color='quran.500' />
-			</Flex>
-			<VStack justifyContent='space-between' alignItems='flex-start'>
-				<Link to={`/surah/${id}`}>
-					<Heading as='h3' size='md' fontWeight={600}>
-						{nameSimple} <chakra.span fontFamily='IndoPak' ml={4} color='quran.500'>{nameArabic}</chakra.span>
-					</Heading>
-				</Link>
-				<Heading as='h3' size='md' fontWeight={600} color='gray.500'>
-					{translatedName}
-				</Heading>
-			</VStack>
-		</VStack>
-	</WrapItem>
+      ;
+      <Flex w='full' justifyContent='space-between' fontSize='xl' fontWeight='bold' mb={2}>
+        <Badge colorScheme='green' ml='1' fontSize='0.8em'># {id}</Badge>
+        <IconHeart color='quran.500' />
+      </Flex>
+      <VStack justifyContent='space-between' alignItems='flex-start'>
+        <Link to={`/surah/${id}`}>
+          <Heading as='h3' size='md' fontWeight={600}>
+            {nameSimple} <chakra.span fontFamily='IndoPak' ml={4} color='quran.500'>{nameArabic}</chakra.span>
+          </Heading>
+        </Link>
+        <Heading as='h3' size='md' fontWeight={600} color='gray.500'>
+          {translatedName}
+        </Heading>
+      </VStack>
+    </VStack>
+  </WrapItem>
 );

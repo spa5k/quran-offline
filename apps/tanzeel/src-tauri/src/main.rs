@@ -48,7 +48,7 @@ async fn get_ayah_by_surah_number(
     number: i32,
 ) -> Result<AyahVector, sqlx::Error> {
     // Get surah by the number and return its text
-    let surah = sqlx::query!("SELECT text,ayah FROM ayah JOIN simple_main ON simple_main.id = ayah.simple_id WHERE surah = ?", number)
+    let surah = sqlx::query!("SELECT text,ayah FROM ayah JOIN uthmani ON uthmani.id = ayah.simple_id WHERE surah = ?", number)
         .fetch_all(pool)
         .await?;
     

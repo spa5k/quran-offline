@@ -2,17 +2,17 @@ import { getSingleAyah } from './getSingleAyah';
 import { Lafz } from './types';
 
 export const getAyahsPagination = async (perPage: number, surahNumber: number, maxAyahs: number, currentStartingVerse: number): Promise<Lafz[][]> => {
-	const Ayah: Lafz[][] = [];
+  const Ayah: Lafz[][] = [];
 
-	const numberOfAyahsToGet: number = maxAyahs % perPage;
-	for (let i: number = currentStartingVerse; i < currentStartingVerse + numberOfAyahsToGet; i++) {
-		// check if the ayah we are getting is more than maxAyahs
-		if (i > maxAyahs) {
-			break;
-		}
-		const ayah: Lafz[] = await getSingleAyah(surahNumber, i);
+  const numberOfAyahsToGet: number = maxAyahs % perPage;
+  for (let i: number = currentStartingVerse; i < currentStartingVerse + numberOfAyahsToGet; i++) {
+    // check if the ayah we are getting is more than maxAyahs
+    if (i > maxAyahs) {
+      break;
+    }
+    const ayah: Lafz[] = await getSingleAyah(surahNumber, i);
 
-		Ayah.push(ayah);
-	}
-	return Ayah;
+    Ayah.push(ayah);
+  }
+  return Ayah;
 };

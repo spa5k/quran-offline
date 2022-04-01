@@ -1,54 +1,54 @@
 {
-	"search.exclude": {
-		"**/.yarn": true,
-		"**/.pnp.*": true
-	},
-	"[javascript]": {
-		"editor.defaultFormatter": "dprint.dprint"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "dprint.dprint"
-	},
-	"[json]": {
-		"editor.defaultFormatter": "dprint.dprint"
-	},
-	"[jsonc]": {
-		"editor.defaultFormatter": "dprint.dprint"
-	},
-	"[markdown]": {
-		"editor.defaultFormatter": "dprint.dprint"
-	},
-	"[toml]": {
-		"editor.defaultFormatter": "dprint.dprint"
-	},
-	"[rust]": {
-		"editor.defaultFormatter": "matklad.rust-analyzer"
-	},
-	"conventionalCommits.scopes": [
-		"main",
-		"commit",
-		"@rahma/routes",
-		"deps",
-		"@rahma",
-		"@rahma/logs",
-		"@tanzeel",
-		"docs",
-		"layout",
-		"layout",
-		"navbar",
-		"right/sidebar",
-		"feature/middle-section",
-		"data",
-		"quran",
-		"routing",
-		"fonts",
-		"types",
-		"tauri",
-		"surah",
-		"recitation",
-		"ayah-player",
-		"refactor",
-		"database",
-		"translations"
-	]
+  "search.exclude": {
+    "**/.yarn": true,
+    "**/.pnp.*": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[toml]": {
+    "editor.defaultFormatter": "dprint.dprint"
+  },
+  "[rust]": {
+    "editor.defaultFormatter": "matklad.rust-analyzer"
+  },
+  "conventionalCommits.scopes": [
+    "main",
+    "commit",
+    "@rahma/routes",
+    "deps",
+    "@rahma",
+    "@rahma/logs",
+    "@tanzeel",
+    "docs",
+    "layout",
+    "layout",
+    "navbar",
+    "right/sidebar",
+    "feature/middle-section",
+    "data",
+    "quran",
+    "routing",
+    "fonts",
+    "types",
+    "tauri",
+    "surah",
+    "recitation",
+    "ayah-player",
+    "refactor",
+    "database",
+    "translations"
+  ]
 }
